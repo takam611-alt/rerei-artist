@@ -4,513 +4,132 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07101f">
-
 <title>Re:黎（リレイ）Official Artist Site</title>
 <meta name="description" content="Re:黎（リレイ）公式アーティストサイト。心に残る言葉を、音楽に。そっと寄り添う一曲を。">
-
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-
 <meta property="og:title" content="Re:黎（リレイ）Official Artist Site">
 <meta property="og:description" content="心に残る言葉を、音楽に。そっと寄り添う一曲を。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://takam611-alt.github.io/rerei-artist/">
 <meta property="og:image" content="https://takam611-alt.github.io/rerei-artist/ogp.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Re:黎（リレイ）">
-<meta property="og:locale" content="ja_JP">
-
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Re:黎（リレイ）Official Artist Site">
-<meta name="twitter:description" content="心に残る言葉を、音楽に。そっと寄り添う一曲を。">
 <meta name="twitter:image" content="https://takam611-alt.github.io/rerei-artist/ogp.png">
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"MusicGroup",
-  "name":"Re:黎",
-  "alternateName":"リレイ",
-  "url":"https://takam611-alt.github.io/rerei-artist/",
-  "sameAs":[
-    "https://www.tiktok.com/@rerei_music",
-    "https://www.instagram.com/rerei_music/",
-    "https://youtube.com/@rerei_music",
-    "https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL",
-    "https://music.apple.com/jp/artist/re-%E9%BB%8E-%E3%83%AA%E3%83%AC%E3%82%A4/6784674311",
-    "https://music.amazon.co.jp/artists/B0H6QWWG61",
-    "https://music.youtube.com/channel/UC_30okHm1kY7a_XroV0SYvw"
-  ]
-}
-</script>
-
 <style>
-:root{
-  --bg:#07101f;
-  --bg2:#050a13;
-  --panel:#0d182b;
-  --panel2:#111d33;
-  --line:rgba(255,255,255,.10);
-  --line2:rgba(255,255,255,.16);
-  --text:#f7f8ff;
-  --muted:#9ca8bd;
-  --accent:#ec9ac8;
-  --accent2:#9c8cff;
-  --accent3:#b6a8ff;
-  --shadow:0 24px 60px rgba(0,0,0,.34);
-}
+:root{--bg:#07101f;--panel:#0d182b;--line:rgba(255,255,255,.1);--text:#f7f8ff;--muted:#9ca8bd;--accent:#ec9ac8;--accent2:#9c8cff;--shadow:0 20px 50px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:linear-gradient(180deg,#07101f,#09111f 60%,#060b14);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",system-ui,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,100%);margin:auto}
+.nav{position:fixed;inset:0 0 auto;z-index:20;padding:12px 16px;background:rgba(7,16,31,.58);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}.navin{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-family:Georgia,"Yu Mincho",serif;font-size:24px}.nav a{font-size:12px}.navlinks{display:flex;gap:14px}
+.hero{min-height:76vh;position:relative;background:url('hero.svg') center/cover no-repeat;overflow:hidden}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,8,18,.14),rgba(4,8,18,.18) 55%,#07101f 100%)}.hero-inner{position:relative;z-index:2;padding:18vh 20px 90px;max-width:780px}.kicker{font-size:11px;letter-spacing:.28em;color:#e9b9d7;margin-bottom:16px}.logo{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(62px,13vw,120px);line-height:.9;letter-spacing:-.05em}.ruby{font-size:17px;letter-spacing:.3em;margin:12px 0 24px;color:#e8eaf2}.tagline{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(19px,4vw,31px);line-height:1.7;letter-spacing:.08em}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);padding:12px 17px;border-radius:999px;background:rgba(10,16,31,.6);backdrop-filter:blur(14px);font-weight:700}.btn.primary{border:0;background:linear-gradient(135deg,var(--accent2),var(--accent));box-shadow:0 10px 28px rgba(196,133,211,.22)}
+main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 4px 14px}.head h2{font-family:Georgia,"Yu Mincho",serif;font-size:29px;font-weight:500;margin:0}.small{font-size:11px;color:var(--muted)}
+.latest{display:grid;grid-template-columns:150px 1fr;gap:18px;background:linear-gradient(145deg,rgba(24,35,60,.94),rgba(11,18,34,.94));border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow)}.cover{aspect-ratio:1;border-radius:20px;background:linear-gradient(145deg,#23396f,#d48bab);position:relative;overflow:hidden}.cover:after{content:"Re:黎";position:absolute;left:14px;bottom:14px;font-family:Georgia,serif;font-size:22px}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:rgba(236,154,200,.12);color:#f0b4d6;font-size:11px;font-weight:800}.latest h3{font-family:Georgia,"Yu Mincho",serif;font-size:clamp(25px,5vw,40px);font-weight:500;margin:10px 0 8px}.latest p{color:var(--muted);margin:0 0 16px}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.service{border:1px solid var(--line);border-radius:16px;padding:16px 8px;text-align:center;background:rgba(13,24,43,.72);font-size:12px}.service b{display:block;font-size:18px;margin-bottom:5px}.socials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.social{border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;background:rgba(13,24,43,.72);font-weight:800}
+.searchbar{margin-bottom:12px}.searchbar input{width:100%;border:1px solid var(--line);background:#0c1628;color:white;border-radius:15px;padding:13px 14px;outline:none}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.song{display:flex;align-items:center;gap:12px;background:linear-gradient(145deg,#0e192c,#0b1424);border:1px solid var(--line);border-radius:18px;padding:11px}.thumb{width:54px;height:54px;flex:0 0 54px;border-radius:13px;background:linear-gradient(145deg,#243d73,#ba7fae);display:grid;place-items:center;font-family:Georgia,serif;font-size:18px}.song-copy{min-width:0;flex:1}.song-title{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.song-sub{font-size:11px;color:var(--muted);margin-top:4px}.arrow{color:#d8b3cf;font-size:20px}
+.about,.contact{background:linear-gradient(145deg,#0e1829,#101a31);border:1px solid var(--line);border-radius:24px;padding:22px;line-height:1.9;color:#d6dbe7}.contact{text-align:center}.contact h2{font-family:Georgia,"Yu Mincho",serif;font-weight:500;margin:0 0 8px}.footer{text-align:center;color:#728097;padding:28px 16px 44px;font-size:12px}
+@media(max-width:720px){.navlinks a:not(:last-child){display:none}.hero{min-height:70vh}.hero-inner{padding-top:16vh}.latest{grid-template-columns:110px 1fr}.services{grid-template-columns:repeat(2,1fr)}.socials,.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap navin"><a class="brand" href="#">Re:黎 <span style="font-size:11px">リレイ</span></a><div class="navlinks"><a href="#music">Music</a><a href="#discography">Discography</a><a href="#about">About</a><a href="#contact">Contact</a></div></div></nav>
 
-*{
-  box-sizing:border-box;
-}
+<header class="hero"><div class="wrap hero-inner">
+<div class="kicker">RE:REI OFFICIAL ARTIST SITE</div>
+<div class="logo">Re:黎</div><div class="ruby">リレイ</div>
+<div class="tagline">心に残る言葉を、音楽に。<br>そっと寄り添う一曲を。</div>
+<div class="actions"><a class="btn primary" href="#discography">楽曲を聴く</a><a class="btn" href="https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL" target="_blank" rel="noopener">Spotify</a><a class="btn" href="https://www.instagram.com/rerei_music/" target="_blank" rel="noopener">Instagram</a></div>
+</div></header>
 
-html{
-  scroll-behavior:smooth;
-  background:var(--bg);
-}
+<main class="wrap">
+<section class="section"><div class="head"><h2>Latest Release</h2><div class="small">最新リリース</div></div><div class="latest"><div class="cover"></div><div><div class="badge">NEW RELEASE</div><h3>何度でも君を</h3><p>Re:黎（リレイ）</p><a class="btn primary" href="https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf" target="_blank" rel="noopener">今すぐ聴く</a></div></div></section>
 
-body{
-  margin:0;
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  background:
-    radial-gradient(circle at 80% 0%,rgba(156,140,255,.10),transparent 28%),
-    radial-gradient(circle at 15% 40%,rgba(236,154,200,.06),transparent 26%),
-    linear-gradient(180deg,#07101f,#09111f 50%,#050a13 100%);
-}
+<section id="music" class="section"><div class="head"><h2>Listen</h2><div class="small">配信サービス</div></div><div class="services">
+<a class="service" href="https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL" target="_blank" rel="noopener"><b>●</b>Spotify</a>
+<a class="service" href="https://music.apple.com/jp/artist/re-%E9%BB%8E-%E3%83%AA%E3%83%AC%E3%82%A4/6784674311" target="_blank" rel="noopener"><b>♫</b>Apple Music</a>
+<a class="service" href="https://music.amazon.co.jp/artists/B0H6QWWG61" target="_blank" rel="noopener"><b>◔</b>Amazon Music</a>
+<a class="service" href="https://music.youtube.com/channel/UC_30okHm1kY7a_XroV0SYvw" target="_blank" rel="noopener"><b>▶</b>YouTube Music</a>
+</div></section>
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 20% 15%,rgba(255,255,255,.05) 0 1px,transparent 1.5px),
-    radial-gradient(circle at 70% 30%,rgba(255,255,255,.03) 0 1px,transparent 1.5px);
-  background-size:110px 110px,160px 160px;
-  opacity:.4;
-}
+<section class="section"><div class="head"><h2>Social</h2><div class="small">Follow Re:黎</div></div><div class="socials">
+<a class="social" href="https://www.tiktok.com/@rerei_music" target="_blank" rel="noopener">♪ TikTok</a>
+<a class="social" href="https://www.instagram.com/rerei_music/" target="_blank" rel="noopener">◎ Instagram</a>
+<a class="social" href="https://youtube.com/@rerei_music" target="_blank" rel="noopener">▶ YouTube</a>
+</div></section>
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
+<section id="discography" class="section"><div class="head"><h2>Discography</h2><div class="small" id="trackCount"></div></div><div class="searchbar"><input id="songSearch" type="search" placeholder="曲名を検索"></div><div id="songGrid" class="grid"></div></section>
 
-button,
-input{
-  font:inherit;
-}
+<section id="about" class="section"><div class="head"><h2>About</h2><div class="small">Re:黎（リレイ）</div></div><div class="about">言葉にならない感情や、誰かの心に残る瞬間を音楽へ。<br><br>Re:黎（リレイ）は、日々の中で生まれる想いや、ふと心に残る言葉をメロディとともに届ける音楽プロジェクトです。<br><br>誰かの夜にそっと寄り添い、明日へ進むための一曲になれるように。</div></section>
 
-img{
-  max-width:100%;
-  display:block;
-}
+<section id="contact" class="section"><div class="contact"><h2>Contact</h2><p>楽曲使用・制作依頼・その他お問い合わせは、InstagramのDMよりお願いいたします。</p><a class="btn primary" href="https://www.instagram.com/rerei_music/" target="_blank" rel="noopener">Instagramで問い合わせる</a></div></section>
+</main>
 
-.wrap{
-  width:min(1120px,100%);
-  margin:auto;
-}
+<footer class="footer">© 2026 Re:黎（リレイ）</footer>
 
-.nav{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:50;
-  padding:12px 16px;
-  transition:.25s ease;
-}
-
-.nav.scrolled{
-  background:rgba(5,10,19,.74);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.07);
-}
-
-.nav-inner{
-  width:min(1120px,100%);
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
-
-.nav-logo{
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:25px;
-  letter-spacing:.03em;
-  white-space:nowrap;
-}
-
-.nav-logo span{
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
-  font-size:10px;
-  color:#c5cbda;
-  margin-left:6px;
-  letter-spacing:.12em;
-}
-
-.nav-links{
-  display:flex;
-  gap:6px;
-  align-items:center;
-}
-
-.nav-links a{
-  font-size:12px;
-  color:#cdd3df;
-  padding:9px 11px;
-  border-radius:999px;
-}
-
-.nav-links a:hover{
-  background:rgba(255,255,255,.06);
-  color:white;
-}
-
-.hero{
-  min-height:82vh;
-  position:relative;
-  background:url('hero.svg') center/cover no-repeat;
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg,rgba(3,7,16,.72),rgba(3,7,16,.28) 58%,rgba(3,7,16,.12)),
-    linear-gradient(180deg,rgba(4,8,18,.08),rgba(4,8,18,.12) 40%,#07101f 100%);
-}
-
-.hero-glow{
-  position:absolute;
-  width:480px;
-  height:480px;
-  right:-100px;
-  top:80px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(236,154,200,.15),transparent 65%);
-  filter:blur(12px);
-}
-
-.hero-inner{
-  position:relative;
-  z-index:2;
-  padding:170px 20px 105px;
-  width:100%;
-}
-
-.kicker{
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.32em;
-  color:#e9b9d7;
-  margin-bottom:18px;
-}
-
-.logo{
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(68px,14vw,130px);
-  font-weight:500;
-  line-height:.86;
-  letter-spacing:-.05em;
-  text-shadow:
-    0 0 30px rgba(209,168,255,.16),
-    0 4px 34px rgba(0,0,0,.42);
-}
-
-.ruby{
-  font-size:16px;
-  letter-spacing:.36em;
-  margin:15px 0 28px;
-  color:#e8eaf2;
-}
-
-.tagline{
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(20px,4vw,31px);
-  letter-spacing:.08em;
-  line-height:1.75;
-  max-width:680px;
-}
-
-.hero-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:30px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  min-height:46px;
-  border:1px solid var(--line2);
-  padding:11px 18px;
-  border-radius:999px;
-  background:rgba(8,14,27,.54);
-  backdrop-filter:blur(15px);
-  font-weight:800;
-  font-size:13px;
-  transition:.2s ease;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  border-color:rgba(236,154,200,.45);
-}
-
-.btn.primary{
-  border:0;
-  background:linear-gradient(135deg,var(--accent2),var(--accent));
-  box-shadow:0 12px 30px rgba(196,133,211,.24);
-}
-
-main{
-  padding:0 16px 90px;
-}
-
-.section{
-  margin-top:38px;
-  scroll-margin-top:90px;
-}
-
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:16px;
-  margin:0 4px 15px;
-}
-
-.section-head h2{
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(27px,5vw,34px);
-  font-weight:500;
-  margin:0;
-}
-
-.section-head .small{
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:.08em;
-}
-
-.latest{
-  display:grid;
-  grid-template-columns:180px 1fr;
-  gap:22px;
-  align-items:center;
-  background:
-    radial-gradient(circle at 0% 0%,rgba(156,140,255,.13),transparent 35%),
-    linear-gradient(145deg,rgba(24,35,60,.96),rgba(10,17,31,.96));
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:20px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  position:relative;
-}
-
-.latest::after{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  right:-90px;
-  top:-100px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(236,154,200,.10),transparent 65%);
-}
-
-.cover{
-  aspect-ratio:1;
-  border-radius:21px;
-  background:
-    radial-gradient(circle at 70% 25%,rgba(255,255,255,.2),transparent 24%),
-    linear-gradient(145deg,#273f78,#c783b3);
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 20px 38px rgba(0,0,0,.30);
-}
-
-.cover::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 50% 45%,transparent 0 33%,rgba(255,255,255,.14) 34% 35%,transparent 36%),
-    linear-gradient(180deg,transparent 43%,rgba(3,8,16,.63));
-}
-
-.cover::after{
-  content:"Re:黎";
-  position:absolute;
-  left:15px;
-  bottom:15px;
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:24px;
-}
-
-.latest-copy{
-  position:relative;
-  z-index:2;
-}
-
-.badge{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(236,154,200,.13);
-  border:1px solid rgba(236,154,200,.16);
-  color:#f3b7d9;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.12em;
-}
-
-.latest h3{
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(29px,5vw,46px);
-  font-weight:500;
-  margin:11px 0 8px;
-}
-
-.latest p{
-  color:var(--muted);
-  margin:0 0 19px;
-}
-
-.services{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.service{
-  min-height:94px;
-  border:1px solid var(--line);
-  border-radius:19px;
-  padding:16px 10px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  background:rgba(13,24,43,.72);
-  font-size:12px;
-  color:#dce1ed;
-  transition:.2s ease;
-}
-
-.service:hover{
-  transform:translateY(-3px);
-  border-color:rgba(236,154,200,.38);
-  background:rgba(17,29,51,.90);
-}
-
-.service .icon{
-  font-size:19px;
-  margin-bottom:7px;
-}
-
-.service strong{
-  font-size:12px;
-}
-
-.socials{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.social{
-  border:1px solid var(--line);
-  border-radius:19px;
-  background:linear-gradient(145deg,#0e192c,#0b1424);
-  padding:17px 14px;
-  min-height:62px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  font-size:13px;
-  font-weight:900;
-  transition:.2s ease;
-}
-
-.social:hover{
-  transform:translateY(-3px);
-  border-color:rgba(236,154,200,.40);
-}
-
-.searchbar{
-  margin-bottom:12px;
-  position:relative;
-}
-
-.searchbar::before{
-  content:"⌕";
-  position:absolute;
-  left:15px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#8996ad;
-  font-size:20px;
-  pointer-events:none;
-}
-
-.searchbar input{
-  width:100%;
-  border:1px solid var(--line);
-  background:rgba(12,22,40,.85);
-  color:white;
-  border-radius:17px;
-  padding:14px 15px 14px 43px;
-  outline:none;
-}
-
-.searchbar input:focus{
-  border-color:rgba(236,154,200,.45);
-  box-shadow:0 0 0 3px rgba(236,154,200,.05);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px;
-}
-
-.song{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-  background:linear-gradient(145deg,#0e192c,#0a1323);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:11px;
-  transition:.2s ease;
-}
-
-.song:hover{
-  transform:translateY(-2px);
-  border-color:rgba(236,154,200,.34);
-  background:linear-gradient(145deg,#111d32,#0d1729);
-}
-
-.thumb{
-  width:56px;
-  height:56px;
-  flex:0 0 56px;
-  border-radius:14px;
-  background:
-    radial-gradient(circle at 65% 25%,rgba(255,255,255,.
+<script>
+const SONGS = [
+["何度でも君を","https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf"],
+["またねの続き","https://distrokid.com/hyperfollow/re43/BbWoogVMQgJ"],
+["もしも今日が","https://distrokid.com/hyperfollow/re43/bRZ9oz4eM0A"],
+["最後の花火","https://distrokid.com/hyperfollow/re43/XP8uZLvQv0v"],
+["好きって","https://distrokid.com/hyperfollow/re43/lDQsRYAzKDL"],
+["声だけで","https://distrokid.com/hyperfollow/re43/1lCYTIgobAz"],
+["幸せってたぶん","https://distrokid.com/hyperfollow/re43/vU5Lo9685uN"],
+["明日も君と","https://distrokid.com/hyperfollow/re43/ZmswGEu0vYL"],
+["少しだけ未来へ","https://distrokid.com/hyperfollow/re43/E4LOOwZXa2l"],
+["大切なもの","https://distrokid.com/hyperfollow/re43/KO2dWOVkzmb"],
+["僕の弱いところ","https://distrokid.com/hyperfollow/re43/k7cDmhwnIZJ"],
+["涙の先に","https://distrokid.com/hyperfollow/re43/tPRD0HrS8N6"],
+["君といる理由","https://distrokid.com/hyperfollow/re43/Z5CtmVLhF0O"],
+["何度でも恋をして","https://distrokid.com/hyperfollow/re43/SHb3RCeAmz5"],
+["君のとなり","https://distrokid.com/hyperfollow/re43/zjAiK2Ez3KY"],
+["ずっと、君と","https://distrokid.com/hyperfollow/re43/RMZJMugsMBl"],
+["ありがとうを君へ","https://distrokid.com/hyperfollow/re43/hWTwUP1yGXL"],
+["君がくれた毎日","https://distrokid.com/hyperfollow/re43/ByF6BhuV7yr"],
+["君の好きなところ","https://distrokid.com/hyperfollow/re43/P5X2gUkScew"],
+["83億分の君","https://distrokid.com/hyperfollow/re43/83"],
+["見えない糸","https://distrokid.com/hyperfollow/re43/l0OXJXu5EY4"],
+["ふたりごと","https://distrokid.com/hyperfollow/re43/NqOI6WCGdka"],
+["会いたい理由","https://distrokid.com/hyperfollow/re43/yXcVKf6yaLa"],
+["未来への下書き","https://distrokid.com/hyperfollow/re43/qCN5STml59A"],
+["ふたりの水平線","https://distrokid.com/hyperfollow/re43/hZ0Nj67T4zU"],
+["白紙に咲く花","https://distrokid.com/hyperfollow/re43/TnT3Tv52SoS"],
+["空白の花言葉","https://distrokid.com/hyperfollow/re43/w8lGvWM8fO9"],
+["はじまりの栞","https://distrokid.com/hyperfollow/re43/DnzKyZ5eqRY"],
+["花の栞","https://distrokid.com/hyperfollow/re43/XVFnc0fZEua"],
+["花束の続きを","https://distrokid.com/hyperfollow/re43/LhiM9zZBDRO"],
+["今日の続きを","https://distrokid.com/hyperfollow/re43/O3mpvbMwfG3"],
+["最後の欠片","https://distrokid.com/hyperfollow/re43/n9MR7ntLDIu"],
+["消せないしおり","https://distrokid.com/hyperfollow/re43/npDLdPNnUjB"],
+["心のものさし","https://distrokid.com/hyperfollow/re43/mFLjKWLHMOS"],
+["ふたりの余白","https://distrokid.com/hyperfollow/re43/ziB1u9EFm9G"],
+["離れても","https://distrokid.com/hyperfollow/re43/In11E0GAbnv"],
+["叶わない恋","https://distrokid.com/hyperfollow/re43/mLarzQcTYgD"],
+["最後に笑った君へ","https://distrokid.com/hyperfollow/re43/hoO0dehVPAU"],
+["静かな約束","https://distrokid.com/hyperfollow/re43/DjX1AyPLN9o"],
+["それでも明日は来る。","https://distrokid.com/hyperfollow/re43/tslShHUBQIi"],
+["立て","https://distrokid.com/hyperfollow/re43/fnNqUPZR2Iq"],
+["君がいた季節","https://distrokid.com/hyperfollow/re43/3TF36kAtqpI"],
+["風のあと","https://distrokid.com/hyperfollow/re43/zsROCTMM281"],
+["今日を越えて","https://distrokid.com/hyperfollow/re43/PJRMe1KNS57"],
+["ごめんねと言えなくて","https://distrokid.com/hyperfollow/re43/zTQaKvjHwmp"],
+["わがままでもいい","https://distrokid.com/hyperfollow/re43/hq53iVkT4wj"],
+["今日だけは泣こう","https://distrokid.com/hyperfollow/re43/kWOmbknqaHK"],
+["同じ気持ちでいられたら","https://distrokid.com/hyperfollow/re43/zQ9ihGD5hBa"],
+["君がいたから","https://distrokid.com/hyperfollow/re43/ISlM7gDo3d0"],
+["君がいた世界","https://distrokid.com/hyperfollow/re43/IzXtCPqLzrN"],
+["笑顔の理由","https://distrokid.com/hyperfollow/re43/Vn4eoP4LRfF"],
+["弱音","https://distrokid.com/hyperfollow/re43/f0lWTlKba3o"],
+["助けてと言えなくて","https://distrokid.com/hyperfollow/re43/9sCbdNw0JIW"],
+["君の耳元で","https://distrokid.com/hyperfollow/re43/oGCVNyjM5zr"],
+["君の歩幅で。","https://distrokid.com/hyperfollow/re43/IFgbC8hBZ7n"],
+["君がいる温度で","https://distrokid.com/hyperfollow/re43/vhkDrSlEAYy"],
+["泣いていい。","https://distrokid.com/hyperfollow/re43/d0zL2sQI1fK"],
+["もう片方の未来","https://distrokid.com/hyperfollow/re43/FjKMYtWclTy"]
+];
+const grid=document.getElementById("songGrid"), search=document.getElementById("songSearch"), count=document.getElementById("trackCount");
+count.textContent=SONGS.length+" tracks";
+function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(q=""){q=q.trim().toLowerCase();const list=SONGS.filter(x=>x[0].toLowerCase().includes(q));grid.innerHTML=list.map(x=>`<a class="song" href="${x[1]}" target="_blank" rel="noopener"><div class="thumb">${esc(x[0].slice(0,2))}</div><div class="song-copy"><div class="song-title">${esc(x[0])}</div><div class="song-sub">Re:黎（リレイ） · LISTEN</div></div><div class="arrow">›</div></a>`).join("")||'<div class="about">該当する楽曲がありません。</div>'}
+search.addEventListener("input",e=>render(e.target.value));render();
+</script>
+</body>
+</html>
