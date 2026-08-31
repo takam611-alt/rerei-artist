@@ -27,6 +27,21 @@ main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.head{d
 .searchbar{margin-bottom:12px}.searchbar input{width:100%;border:1px solid var(--line);background:#0c1628;color:white;border-radius:15px;padding:13px 14px;outline:none}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.song{display:flex;align-items:center;gap:12px;background:linear-gradient(145deg,#0e192c,#0b1424);border:1px solid var(--line);border-radius:18px;padding:11px}.thumb{position:relative;width:54px;height:54px;flex:0 0 54px;border-radius:13px;overflow:hidden;background:radial-gradient(circle at 72% 22%,rgba(255,255,255,.18),transparent 18%),linear-gradient(145deg,#1f325f,#a86ea0);box-shadow:0 8px 20px rgba(0,0,0,.22);display:flex;align-items:flex-end;justify-content:flex-start;padding:7px}.thumb:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,transparent 0 32%,rgba(255,255,255,.16) 33% 34%,transparent 35%),linear-gradient(180deg,transparent 48%,rgba(3,8,16,.45))}.thumb:after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85);top:10px;right:10px;box-shadow:0 0 12px rgba(255,255,255,.35)}.thumb-mark{position:relative;z-index:1;font-family:Georgia,"Yu Mincho",serif;font-size:11px;line-height:1;color:#fff;letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.35)}.song-copy{min-width:0;flex:1}.song-title{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.song-sub{font-size:11px;color:var(--muted);margin-top:4px}.arrow{color:#d8b3cf;font-size:20px}
 .about,.contact{background:linear-gradient(145deg,#0e1829,#101a31);border:1px solid var(--line);border-radius:24px;padding:22px;line-height:1.9;color:#d6dbe7}.contact{text-align:center}.contact h2{font-family:Georgia,"Yu Mincho",serif;font-weight:500;margin:0 0 8px}.footer{text-align:center;color:#728097;padding:28px 16px 44px;font-size:12px}
 @media(max-width:720px){.navlinks a:not(:last-child){display:none}.hero{min-height:70vh}.hero-inner{padding-top:16vh}.latest{grid-template-columns:110px 1fr}.services{grid-template-columns:repeat(2,1fr)}.socials,.grid{grid-template-columns:1fr}}
+
+.spotify-embed{
+  margin-top:12px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(13,24,43,.72);
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
+}
+.spotify-embed iframe{
+  display:block;
+  width:100%;
+  border:0;
+}
+
 </style>
 </head>
 <body>
@@ -40,7 +55,27 @@ main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.head{d
 </div></header>
 
 <main class="wrap">
-<section class="section"><div class="head"><h2>Latest Release</h2><div class="small">最新リリース</div></div><div class="latest"><div class="cover"></div><div><div class="badge">NEW RELEASE</div><h3>何度でも君を</h3><p>Re:黎（リレイ）</p><a class="btn primary" href="https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf" target="_blank" rel="noopener">今すぐ聴く</a></div></div></section>
+<section class="section">
+  <div class="head"><h2>Latest Release</h2><div class="small">最新リリース</div></div>
+  <div class="latest">
+    <div class="cover"></div>
+    <div>
+      <div class="badge">NEW RELEASE</div>
+      <h3>何度でも君を</h3>
+      <p>Re:黎（リレイ）</p>
+      <a class="btn primary" href="https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf" target="_blank" rel="noopener">各配信サービスで聴く</a>
+    </div>
+  </div>
+
+  <div class="spotify-embed">
+    <iframe
+      src="https://open.spotify.com/embed/album/5G9Btmq2yfkwHMnJ685ioW"
+      height="152"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
 
 <section id="music" class="section"><div class="head"><h2>Listen</h2><div class="small">配信サービス</div></div><div class="services">
 <a class="service" href="https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL" target="_blank" rel="noopener"><b>●</b>Spotify</a>
