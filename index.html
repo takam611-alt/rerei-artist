@@ -28,20 +28,14 @@ main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.head{d
 .about,.contact{background:linear-gradient(145deg,#0e1829,#101a31);border:1px solid var(--line);border-radius:24px;padding:22px;line-height:1.9;color:#d6dbe7}.contact{text-align:center}.contact h2{font-family:Georgia,"Yu Mincho",serif;font-weight:500;margin:0 0 8px}.footer{text-align:center;color:#728097;padding:28px 16px 44px;font-size:12px}
 @media(max-width:720px){.navlinks a:not(:last-child){display:none}.hero{min-height:70vh}.hero-inner{padding-top:16vh}.latest{grid-template-columns:110px 1fr}.services{grid-template-columns:repeat(2,1fr)}.socials,.grid{grid-template-columns:1fr}}
 
-.spotify-embed{
-  margin-top:12px;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(13,24,43,.72);
-  box-shadow:0 16px 34px rgba(0,0,0,.18);
-}
-.spotify-embed iframe{
-  display:block;
-  width:100%;
-  border:0;
-}
-
+.spotify-player-row{grid-column:1/-1;display:none;margin-top:-2px;margin-bottom:4px}
+.spotify-player-row.open{display:block}
+.spotify-player-box{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(13,24,43,.78);box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.spotify-player-box iframe{display:block;width:100%;height:152px;border:0}
+.song.spotify-enabled{cursor:pointer}
+.song.spotify-enabled .song-sub{color:#c5cedd}
+.spotify-pill{display:inline-flex;align-items:center;gap:6px}
+.spotify-pill:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 </style>
 </head>
 <body>
@@ -55,27 +49,7 @@ main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.head{d
 </div></header>
 
 <main class="wrap">
-<section class="section">
-  <div class="head"><h2>Latest Release</h2><div class="small">最新リリース</div></div>
-  <div class="latest">
-    <div class="cover"></div>
-    <div>
-      <div class="badge">NEW RELEASE</div>
-      <h3>何度でも君を</h3>
-      <p>Re:黎（リレイ）</p>
-      <a class="btn primary" href="https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf" target="_blank" rel="noopener">各配信サービスで聴く</a>
-    </div>
-  </div>
-
-  <div class="spotify-embed">
-    <iframe
-      src="https://open.spotify.com/embed/album/5G9Btmq2yfkwHMnJ685ioW"
-      height="152"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy">
-    </iframe>
-  </div>
-</section>
+<section class="section"><div class="head"><h2>Latest Release</h2><div class="small">最新リリース</div></div><div class="latest"><div class="cover"></div><div><div class="badge">NEW RELEASE</div><h3>何度でも君を</h3><p>Re:黎（リレイ）</p><a class="btn primary" href="https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf" target="_blank" rel="noopener">今すぐ聴く</a></div></div></section>
 
 <section id="music" class="section"><div class="head"><h2>Listen</h2><div class="small">配信サービス</div></div><div class="services">
 <a class="service" href="https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL" target="_blank" rel="noopener"><b>●</b>Spotify</a>
@@ -160,10 +134,71 @@ const SONGS = [
 ["泣いていい。","https://distrokid.com/hyperfollow/re43/d0zL2sQI1fK"],
 ["もう片方の未来","https://distrokid.com/hyperfollow/re43/FjKMYtWclTy"]
 ];
+const SPOTIFY_ALBUMS={"何度でも君を": "5G9Btmq2yfkwHMnJ685ioW", "またねの続き": "6zj4Xa12WFn2qcqerPznMl", "もしも今日が": "44FB7gj3C36lhB3ckyXA7X", "最後の花火": "0ctwb5WJ1AmYLUQ8tiMPEv", "好きって": "2tuTbdXO04aeHdSZNWQu2u", "声だけで": "2EqIvOMYkHorLuQ5MmydoV", "幸せってたぶん": "08EWAWsKCDYC9gNQUZyiW1", "明日も君と": "0nxDZAMd2q7EFk2YzsJtaY", "少しだけ未来へ": "3dZQ4MqVuCWtaChuBvNltE", "大切なもの": "1IX6R9sUdGSYG843dGXdMH"};
 const grid=document.getElementById("songGrid"), search=document.getElementById("songSearch"), count=document.getElementById("trackCount");
 count.textContent=SONGS.length+" tracks";
 function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function render(q=""){q=q.trim().toLowerCase();const list=SONGS.filter(x=>x[0].toLowerCase().includes(q));grid.innerHTML=list.map(x=>`<a class="song" href="${x[1]}" target="_blank" rel="noopener"><div class="thumb"><span class="thumb-mark">Re:黎</span></div><div class="song-copy"><div class="song-title">${esc(x[0])}</div><div class="song-sub">Re:黎（リレイ） · LISTEN</div></div><div class="arrow">›</div></a>`).join("")||'<div class="about">該当する楽曲がありません。</div>'}
+function render(q=""){
+  q=q.trim().toLowerCase();
+  const list=SONGS.filter(x=>x[0].toLowerCase().includes(q));
+
+  grid.innerHTML=list.map(x=>{
+    const spotifyId=SPOTIFY_ALBUMS[x[0]];
+
+    if(spotifyId){
+      return `<div class="song spotify-enabled" role="button" tabindex="0" data-title="${esc(x[0])}" data-spotify="${spotifyId}">
+        <div class="thumb"><span class="thumb-mark">Re:黎</span></div>
+        <div class="song-copy">
+          <div class="song-title">${esc(x[0])}</div>
+          <div class="song-sub"><span class="spotify-pill">Spotifyで試聴</span></div>
+        </div>
+        <div class="arrow">›</div>
+      </div>`;
+    }
+
+    return `<a class="song" href="${x[1]}" target="_blank" rel="noopener">
+      <div class="thumb"><span class="thumb-mark">Re:黎</span></div>
+      <div class="song-copy">
+        <div class="song-title">${esc(x[0])}</div>
+        <div class="song-sub">Re:黎（リレイ） · LISTEN</div>
+      </div>
+      <div class="arrow">›</div>
+    </a>`;
+  }).join("")||'<div class="about">該当する楽曲がありません。</div>';
+
+  document.querySelectorAll(".spotify-enabled").forEach(card=>{
+    const open=()=>toggleSpotify(card);
+    card.addEventListener("click",open);
+    card.addEventListener("keydown",e=>{
+      if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}
+    });
+  });
+}
+
+function toggleSpotify(card){
+  const spotifyId=card.dataset.spotify;
+  const existing=document.querySelector(".spotify-player-row");
+
+  if(existing&&existing.dataset.spotify===spotifyId){
+    existing.remove();
+    return;
+  }
+  if(existing) existing.remove();
+
+  const row=document.createElement("div");
+  row.className="spotify-player-row open";
+  row.dataset.spotify=spotifyId;
+  row.innerHTML=`<div class="spotify-player-box">
+    <iframe
+      src="https://open.spotify.com/embed/album/${spotifyId}"
+      title="${card.dataset.title} - Spotify"
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+  </div>`;
+
+  card.insertAdjacentElement("afterend",row);
+}
 search.addEventListener("input",e=>render(e.target.value));render();
 </script>
 </body>
