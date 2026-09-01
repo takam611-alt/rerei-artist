@@ -107,36 +107,65 @@ img{display:block;max-width:100%}
 .hero-btn.primary{background:var(--ink);color:var(--light)}
 .hero-visual{
   border:1px solid var(--line);
-  display:grid;
-  grid-template-rows:1.15fr .85fr;
-  gap:0;
   background:var(--deep);
+  min-height:72svh;
+  position:relative;
+  overflow:hidden;
 }
 .hero-art{
-  background:url("hero.svg") center/cover no-repeat;
-  position:relative;
-}
-.hero-art:after{
-  content:"";
-  position:absolute;inset:0;
+  position:absolute;
+  inset:0;
   background:
-    linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.28)),
-    radial-gradient(circle at 70% 20%,rgba(255,255,255,.22),transparent 24%);
+    linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.24)),
+    radial-gradient(circle at 70% 18%,rgba(255,255,255,.18),transparent 22%),
+    url("hero.svg") center/cover no-repeat;
+  filter:saturate(.92);
 }
-.hero-note{
-  background:var(--deep);
-  color:#f4efe7;
-  padding:24px;
-  display:flex;flex-direction:column;justify-content:space-between;
+.hero-overlay{
+  position:absolute;
+  inset:auto 18px 18px 18px;
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:14px;
+  align-items:end;
+  padding:16px;
+  background:linear-gradient(180deg,rgba(18,19,23,.28),rgba(18,19,23,.72));
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.10);
 }
-.hero-note .mini{
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#b0a79b
+.hero-jacket{
+  width:110px;
+  aspect-ratio:1;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 10px 30px rgba(0,0,0,.26);
 }
-.hero-note p{
-  margin:14px 0 0;
+.hero-jacket img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero-caption .mini{
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#c8beb3;
+  margin-bottom:8px;
+}
+.hero-caption h3{
+  margin:0 0 8px;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(22px,3vw,34px);
-  line-height:1.7;
+  font-size:clamp(28px,4vw,48px);
+  line-height:1;
+  font-weight:400;
+  letter-spacing:-.04em;
+  color:#f6f1ea;
+}
+.hero-caption p{
+  margin:0;
+  color:#d4cbc0;
+  font-size:13px;
+  line-height:1.75;
 }
 
 .section{padding:28px 0 92px}
@@ -365,6 +394,8 @@ footer{
   .disco-top{grid-template-columns:1fr}
 }
 @media(max-width:560px){
+  .hero-overlay{grid-template-columns:84px 1fr;padding:12px;inset:auto 12px 12px 12px}
+  .hero-jacket{width:84px}
   .wrap{width:min(100% - 24px,1200px)}
   .hero{padding-top:18px}
   .hero-copy{min-height:auto}
@@ -410,9 +441,15 @@ footer{
 
     <div class="hero-visual">
       <div class="hero-art"></div>
-      <div class="hero-note">
-        <div class="mini">Featured Message</div>
-        <p>言葉にならない想いを、<br>そっと掬い上げるように。<br>夜に寄り添う音楽を。</p>
+      <div class="hero-overlay">
+        <div class="hero-jacket">
+          <img src="pickup-cover.png" alt="何度でも君を ジャケット">
+        </div>
+        <div class="hero-caption">
+          <div class="mini">Pick Up Track</div>
+          <h3>何度でも君を</h3>
+          <p>記憶を失っても、きっとまた君を好きになる。<br>そんな想いを込めた一曲。</p>
+        </div>
       </div>
     </div>
   </div>
