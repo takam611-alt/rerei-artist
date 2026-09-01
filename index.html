@@ -65,6 +65,43 @@ main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.pickup
   background:rgba(17,29,51,.88);
 }
 
+
+.video-card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(13,24,43,.78);
+  box-shadow:var(--shadow);
+}
+.video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#05070b;
+}
+.video-frame iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+.video-info{
+  padding:16px 18px 18px;
+}
+.video-info h3{
+  margin:0 0 6px;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(20px,4vw,28px);
+  font-weight:500;
+}
+.video-info p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
 </style>
 </head>
 <body>
@@ -86,6 +123,28 @@ main{padding:0 16px 90px}.section{margin-top:30px;scroll-margin-top:75px}.pickup
 <a class="service" href="https://music.amazon.co.jp/artists/B0H6QWWG61" target="_blank" rel="noopener"><svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 15.6c3.3 2.5 8.8 2.7 12.3.2" fill="none" stroke-width="1.8" stroke-linecap="round"/><path d="M15.8 17.8l2.5-1.8-.5 3" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.1 12.7c.1-2.6 1.5-4.2 4-4.2 2.8 0 3.9 1.5 3.9 4.1v3.5" fill="none" stroke-width="1.7" stroke-linecap="round"/><path d="M15.8 13.1c-1.2-.3-2.3-.4-3.2-.2-1.3.3-2 1-2 2 0 1 .8 1.7 1.9 1.7 1.3 0 2.5-.8 3.3-2.2" fill="none" stroke-width="1.7" stroke-linecap="round"/></svg><span>Amazon Music</span></a>
 <a class="service" href="https://music.youtube.com/channel/UC_30okHm1kY7a_XroV0SYvw" target="_blank" rel="noopener"><svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke-width="1.7"/><circle cx="12" cy="12" r="6.2" fill="none" stroke-width="1.5" opacity=".7"/><path d="M10 8.8l5.4 3.2L10 15.2z" fill="currentColor" stroke="none"/></svg><span>YouTube Music</span></a>
 </div></section>
+
+<section id="video" class="section">
+  <div class="head">
+    <h2>Video</h2>
+    <div class="small">Official Visualizer</div>
+  </div>
+  <div class="video-card">
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube.com/embed/WfGOBleOdlc"
+        title="何度でも君を / Re:黎（リレイ） - Official Visualizer"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-info">
+      <h3>何度でも君を</h3>
+      <p>Re:黎（リレイ） · Official Visualizer</p>
+    </div>
+  </div>
+</section>
 
 <section class="section"><div class="head"><h2>Social</h2><div class="small">Follow Re:黎</div></div><div class="socials">
 <a class="social" href="https://www.tiktok.com/@rerei_music" target="_blank" rel="noopener"><svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5.2v9.2a4.2 4.2 0 1 1-3.3-4.1v2.1a2.2 2.2 0 1 0 1.3 2V4.5h2c.4 1.8 1.5 3 3.3 3.7v2.1c-1.3-.3-2.4-.8-3.3-1.6" fill="currentColor" stroke="none"/></svg><span>TikTok</span></a>
