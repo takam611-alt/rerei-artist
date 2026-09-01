@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#06070b">
+<meta name="theme-color" content="#ede7de">
 <title>Re:黎（リレイ）Official Artist Site</title>
 <meta name="description" content="Re:黎（リレイ）公式アーティストサイト。心に残る言葉を、音楽に。そっと寄り添う一曲を。">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -19,366 +19,359 @@
 
 <style>
 :root{
-  --bg:#06070b;
-  --bg2:#0d1018;
-  --panel:rgba(255,255,255,.06);
-  --panel2:rgba(255,255,255,.08);
-  --line:rgba(255,255,255,.12);
-  --text:#f4f0ea;
-  --muted:#a8a2a2;
-  --accent:#d7b4c8;
-  --accent2:#b9966e;
-  --shadow:0 24px 60px rgba(0,0,0,.36);
+  --bg:#ede7de;
+  --paper:#f7f2ea;
+  --ink:#101010;
+  --muted:#746f67;
+  --line:#cec6bb;
+  --deep:#121317;
+  --deep2:#1c1f27;
+  --light:#fffdfa;
+  --accent:#d2b8a8;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--bg)}
 body{
   margin:0;
-  color:var(--text);
-  background:
-    radial-gradient(circle at top right, rgba(173,120,162,.12), transparent 28%),
-    radial-gradient(circle at bottom left, rgba(188,145,92,.10), transparent 26%),
-    linear-gradient(180deg,#06070b,#0a0c13 38%,#07080c 100%);
+  background:var(--bg);
+  color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-  overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-.wrap{width:min(1180px,calc(100% - 32px));margin:auto}
+.wrap{width:min(1200px,calc(100% - 32px));margin:auto}
 
-.topbar{
-  position:fixed;z-index:50;left:0;right:0;top:0;
-  padding:max(16px,env(safe-area-inset-top)) 18px 12px;
-  background:linear-gradient(180deg,rgba(6,7,11,.78),rgba(6,7,11,0));
-  backdrop-filter:blur(10px);
+.site-top{
+  position:sticky;top:0;z-index:40;
+  backdrop-filter:blur(12px);
+  background:rgba(237,231,222,.78);
+  border-bottom:1px solid rgba(16,16,16,.06);
 }
-.topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.top-inner{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;
+  min-height:64px;
+}
 .brand{
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:28px;
-  letter-spacing:-.03em;
+  font-size:30px;letter-spacing:-.04em;
 }
-.nav{display:flex;gap:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-.nav a{opacity:.82}
-.nav a:hover{opacity:1}
+.top-nav{
+  display:flex;gap:18px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+}
+.top-nav a{opacity:.72}
+.top-nav a:hover{opacity:1}
 
 .hero{
-  min-height:100svh;
-  display:flex;
-  align-items:flex-end;
-  position:relative;
-  overflow:hidden;
+  padding:28px 0 72px;
 }
-.hero:before{
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:20px;
+  align-items:stretch;
+}
+.hero-copy{
+  min-height:72svh;
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:clamp(28px,4vw,48px);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.hero-copy .kicker{
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)
+}
+.hero-copy h1{
+  margin:0;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-weight:400;
+  font-size:clamp(92px,18vw,220px);
+  line-height:.74;
+  letter-spacing:-.09em;
+}
+.hero-copy .ruby{
+  margin:18px 0 22px;
+  font-size:13px;letter-spacing:.42em;color:#857b70
+}
+.hero-copy .tag{
+  max-width:640px;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(20px,2.9vw,34px);
+  line-height:1.8;
+}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hero-btn{
+  min-height:48px;padding:0 18px;border:1px solid var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;background:transparent;
+}
+.hero-btn.primary{background:var(--ink);color:var(--light)}
+.hero-visual{
+  border:1px solid var(--line);
+  display:grid;
+  grid-template-rows:1.15fr .85fr;
+  gap:0;
+  background:var(--deep);
+}
+.hero-art{
+  background:url("hero.svg") center/cover no-repeat;
+  position:relative;
+}
+.hero-art:after{
   content:"";
   position:absolute;inset:0;
   background:
-    linear-gradient(90deg,rgba(7,8,12,.9) 0%,rgba(7,8,12,.58) 43%,rgba(7,8,12,.16) 76%),
-    linear-gradient(180deg,rgba(7,8,12,.10),rgba(7,8,12,.25) 65%,#06070b 100%);
+    linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.28)),
+    radial-gradient(circle at 70% 20%,rgba(255,255,255,.22),transparent 24%);
 }
-.hero:after{
-  content:"";
-  position:absolute;right:-10vw;top:12vh;width:55vw;height:55vw;max-width:760px;max-height:760px;
-  background:url("pickup-cover.png") center/cover no-repeat;
-  border-radius:50%;
-  filter:blur(1px) saturate(.82) brightness(.75);
-  opacity:.33;
-  transform:rotate(-8deg);
-  box-shadow:0 0 160px rgba(0,0,0,.4);
+.hero-note{
+  background:var(--deep);
+  color:#f4efe7;
+  padding:24px;
+  display:flex;flex-direction:column;justify-content:space-between;
 }
-.hero-inner{
-  position:relative;z-index:1;
-  width:min(1180px,calc(100% - 32px));
-  margin:auto;
-  padding:0 0 12vh;
+.hero-note .mini{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#b0a79b
 }
-.hero-kicker{
-  font-size:11px;letter-spacing:.32em;text-transform:uppercase;
-  color:#d7c6d0;
-  margin-bottom:20px;
-}
-.hero h1{
-  margin:0;
+.hero-note p{
+  margin:14px 0 0;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(88px,17vw,220px);
-  font-weight:400;
-  line-height:.74;
-  letter-spacing:-.085em;
-}
-.hero-ruby{
-  margin:24px 0 28px;
-  font-size:13px;letter-spacing:.5em;color:#d8cdbf;
-}
-.hero-tag{
-  max-width:720px;
-  font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(21px,3.2vw,36px);
-  line-height:1.75;
-  color:#f6f1eb;
-}
-.hero-actions{
-  display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;
-}
-.hero-btn{
-  min-height:48px;padding:0 18px;border:1px solid var(--line);
-  display:inline-flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.03);backdrop-filter:blur(8px);
-  font-size:12px;font-weight:700;
-}
-.hero-btn.primary{
-  background:linear-gradient(135deg,rgba(215,180,200,.28),rgba(185,150,110,.22));
-  border-color:rgba(255,255,255,.2);
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.7;
 }
 
-.section{padding:104px 0}
+.section{padding:28px 0 92px}
 .section-head{
-  display:flex;justify-content:space-between;align-items:end;gap:20px;
-  border-top:1px solid var(--line);
-  padding-top:14px;margin-bottom:42px;
+  display:flex;justify-content:space-between;gap:20px;align-items:end;
+  border-top:1px solid rgba(16,16,16,.14);
+  padding-top:12px;margin-bottom:34px;
   font-size:10px;letter-spacing:.18em;text-transform:uppercase;
 }
 .section-head span{color:var(--muted)}
 
-.pickup{
-  padding-top:92px;
-}
-.pickup-card{
+.pickup-shell{
+  background:var(--paper);
   border:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(10px);
   padding:18px;
 }
 .pickup-grid{
   display:grid;
-  grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);
-  gap:22px;
+  grid-template-columns:minmax(300px,.95fr) minmax(0,1.05fr);
+  gap:18px;
 }
-.pickup-left{display:grid;gap:18px}
-.pickup-title-block{
-  border-bottom:1px solid var(--line);
-  padding:6px 2px 18px;
+.pickup-left{
+  display:grid;grid-template-rows:auto 1fr;gap:16px;
 }
-.pickup-label{
+.pickup-titlebox{
+  padding:4px 0 12px;
+  border-bottom:1px solid rgba(16,16,16,.12);
+}
+.pickup-badge{
   display:inline-block;
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:#d9bfcb;margin-bottom:12px;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:#8a7a69;margin-bottom:10px;
 }
 .pickup-title{
   margin:0;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(42px,6vw,78px);
-  font-weight:400;line-height:.95;letter-spacing:-.05em;
+  font-size:clamp(46px,6vw,84px);
+  line-height:.95;letter-spacing:-.055em;font-weight:400;
 }
 .pickup-artist{
   margin-top:10px;
-  font-size:12px;letter-spacing:.16em;color:#bdb7b8;
+  font-size:12px;letter-spacing:.16em;color:var(--muted);
 }
-.pickup-cover{
-  overflow:hidden;
-  aspect-ratio:1;
-  background:#111;
+.pickup-cover img{
+  width:100%;height:100%;aspect-ratio:1;object-fit:cover;
 }
-.pickup-cover img{width:100%;height:100%;object-fit:cover}
 .pickup-right{
-  display:flex;flex-direction:column;
-  justify-content:flex-start;
+  display:grid;grid-template-rows:auto auto auto;gap:14px;
 }
-.pickup-comment{
+.comment-card,
+.video-card,
+.spotify-card{
+  border:1px solid rgba(16,16,16,.12);
+  background:#fbf7f0;
+}
+.comment-card{padding:22px 22px 20px}
+.comment-card p{
+  margin:0;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(21px,2.6vw,32px);
-  line-height:1.9;
-  margin:2px 2px 24px;
+  font-size:clamp(20px,2.5vw,30px);
+  line-height:1.95;
 }
-.video-panel{
-  border:1px solid var(--line);
-  background:rgba(0,0,0,.18);
-  padding:10px;
-  margin-bottom:20px;
-}
+.video-card{padding:10px}
 .video-frame{position:relative;aspect-ratio:16/9;background:#000}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-meta{
-  display:flex;justify-content:space-between;gap:16px;
+  display:flex;justify-content:space-between;gap:10px;
   font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:#b4afb0;padding:10px 2px 0;
+  color:var(--muted);padding:10px 2px 0;
 }
-.spotify-panel{
-  border-top:1px solid var(--line);
-  padding-top:18px;
-}
-.spotify-panel iframe{display:block;width:100%;height:80px;border:0}
+.spotify-card{padding:12px}
+.spotify-card iframe{width:100%;height:80px;border:0;display:block}
 .pickup-actions{
   display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;
 }
 .pickup-actions a{
-  min-height:46px;border:1px solid var(--line);
+  min-height:46px;
   display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--ink);
   font-size:11px;font-weight:700;
-  background:rgba(255,255,255,.03);
 }
-.pickup-actions a:first-child{
-  background:linear-gradient(135deg,rgba(215,180,200,.24),rgba(185,150,110,.18));
-}
+.pickup-actions a:first-child{background:var(--ink);color:var(--light)}
 
-.listen .service-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  border-top:1px solid var(--line);
-  border-left:1px solid var(--line);
+.listen-wrap{
+  background:var(--deep);color:#f1ece4;
+  border:1px solid rgba(255,255,255,.06);
+  padding:18px;
 }
-.listen-card{
-  min-height:160px;
-  padding:20px;
-  border-right:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+.listen-wrap .section-head{
+  border-color:rgba(255,255,255,.14);
+}
+.listen-wrap .section-head span{color:#a59c93}
+.service-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+}
+.service-card{
+  min-height:148px;
+  border:1px solid rgba(255,255,255,.14);
+  padding:18px;
   display:flex;flex-direction:column;justify-content:space-between;
-  background:rgba(255,255,255,.03);
   transition:.18s ease;
 }
-.listen-card:hover{
-  background:rgba(255,255,255,.07);
-  transform:translateY(-2px);
+.service-card:hover{background:rgba(255,255,255,.06);transform:translateY(-2px)}
+.service-card small{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#aca195
 }
-.listen-card small{
-  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#b8b3b3;
-}
-.listen-card strong{
+.service-card strong{
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(26px,3vw,44px);font-weight:400;
+  font-size:clamp(24px,2.8vw,38px);font-weight:400;
 }
 .social-row{
   display:grid;grid-template-columns:repeat(3,1fr);
-  margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  gap:10px;margin-top:10px;
 }
 .social-link{
-  min-height:70px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;font-size:12px;
+  min-height:58px;border:1px solid rgba(255,255,255,.14);
+  padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;
 }
-.social-link+.social-link{border-left:1px solid var(--line)}
 
-.discography{
-  padding-top:92px;
+.discography-shell{
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:18px;
 }
 .disco-top{
-  display:grid;grid-template-columns:1fr minmax(260px,410px);
-  gap:24px;align-items:end;margin-bottom:26px;
+  display:grid;grid-template-columns:1fr minmax(260px,390px);
+  gap:20px;align-items:end;margin-bottom:20px;
 }
 .disco-title{
   margin:0;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(54px,9vw,108px);
-  font-weight:400;line-height:.9;letter-spacing:-.06em;
+  font-size:clamp(56px,9vw,114px);
+  font-weight:400;line-height:.88;letter-spacing:-.07em;
 }
 .searchbar input{
-  width:100%;border:0;border-bottom:1px solid var(--line);
-  background:transparent;color:var(--text);padding:13px 0;border-radius:0;outline:none;
+  width:100%;border:0;border-bottom:1px solid rgba(16,16,16,.18);
+  background:transparent;padding:12px 0;border-radius:0;outline:none;color:var(--ink);
 }
-.grid{
-  display:block;
-  border-top:1px solid var(--line);
-}
+.grid{display:block;border-top:1px solid rgba(16,16,16,.12)}
 .song{
-  display:grid;grid-template-columns:44px 1fr auto;
-  gap:16px;align-items:center;min-height:78px;
-  border-bottom:1px solid var(--line);
-  cursor:pointer;transition:.18s ease;padding:0 4px;
+  display:grid;grid-template-columns:42px 1fr auto;
+  gap:16px;align-items:center;
+  min-height:76px;border-bottom:1px solid rgba(16,16,16,.12);
+  padding:0 6px;cursor:pointer;transition:.18s ease;
 }
-.song:hover{
-  background:rgba(255,255,255,.035);
-  padding-left:12px;
-}
-.thumb{
-  font-size:10px;color:#8e8888;
-}
+.song:hover{background:#f0eae0;padding-left:14px}
+.thumb{font-size:10px;color:var(--muted)}
 .thumb-mark{font-size:0}
 .thumb-mark:after{content:"Re:黎";font-size:10px}
 .song-title{
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(18px,2.1vw,25px);
+  font-size:clamp(19px,2.1vw,26px)
 }
 .song-sub{
-  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8f8b8b;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)
 }
-.arrow{font-size:24px;color:#b7afb1}
+.arrow{font-size:24px;color:#87796e}
 .spotify-player-row{
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(16,16,16,.12);
   padding:14px 0 18px;
 }
 .spotify-player-box iframe{
-  display:block;width:100%;height:80px;border:0;
+  width:100%;height:80px;border:0;display:block;
 }
 .player-actions{
   display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;
 }
 .player-actions a{
-  min-height:42px;border:1px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;background:rgba(255,255,255,.03);
+  min-height:42px;border:1px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:11px;
 }
-.player-actions .primary-link{
-  background:linear-gradient(135deg,rgba(215,180,200,.24),rgba(185,150,110,.18));
-}
+.player-actions .primary-link{background:var(--ink);color:var(--light)}
 
-.about{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));
-}
-.about-grid{
-  display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;
+.about-shell{
+  display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:18px;
 }
 .about-mark{
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(72px,12vw,140px);
-  line-height:.8;letter-spacing:-.07em;
+  font-size:clamp(70px,11vw,146px);
+  line-height:.8;letter-spacing:-.08em;
 }
 .about-copy{
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(20px,2.4vw,30px);
+  font-size:clamp(20px,2.45vw,30px);
   line-height:2;
-  color:#f2ece4;
 }
 
-.contact{
+.contact-shell{
+  background:var(--deep2);
+  color:#f5f0ea;
+  border:1px solid rgba(255,255,255,.06);
+  padding:42px 18px;
   text-align:center;
-  padding:120px 0 140px;
 }
-.contact h2{
-  margin:0 0 24px;
+.contact-shell h2{
+  margin:0 0 20px;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(64px,12vw,148px);
-  font-weight:400;line-height:.84;letter-spacing:-.07em;
+  font-size:clamp(62px,10vw,132px);
+  font-weight:400;line-height:.86;letter-spacing:-.07em;
 }
-.contact p{
-  font-size:13px;line-height:1.9;color:#b2adad;
+.contact-shell p{
+  max-width:680px;margin:0 auto;color:#b3aa9f;font-size:13px;line-height:1.9
 }
-.contact .btn{
+.contact-shell a{
   display:inline-flex;align-items:center;justify-content:center;
-  min-height:52px;padding:0 24px;margin-top:24px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
+  min-height:50px;padding:0 24px;margin-top:22px;
+  border:1px solid rgba(255,255,255,.16);font-size:12px;
 }
-.footer{
-  border-top:1px solid var(--line);
-  padding:24px 0 38px;
-  font-size:10px;letter-spacing:.12em;color:#8f8a8b;
+footer{
+  padding:0 0 30px;
+  font-size:10px;color:var(--muted)
 }
 
-@media(max-width:920px){
-  .nav a:not(:last-child){display:none}
-  .pickup-grid{grid-template-columns:1fr}
-  .listen .service-grid{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){
+  .top-nav a:not(:last-child){display:none}
+  .hero-grid,
+  .pickup-grid,
+  .about-shell{grid-template-columns:1fr}
+  .service-grid{grid-template-columns:repeat(2,1fr)}
   .social-row{grid-template-columns:1fr}
-  .social-link+.social-link{border-left:0;border-top:1px solid var(--line)}
   .disco-top{grid-template-columns:1fr}
-  .about-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .wrap{width:min(100% - 24px,1180px)}
-  .hero h1{font-size:clamp(78px,27vw,130px)}
-  .hero-tag{font-size:20px}
-  .section{padding:74px 0}
-  .pickup-card{padding:14px}
-  .listen .service-grid{grid-template-columns:1fr}
+  .wrap{width:min(100% - 24px,1200px)}
+  .hero{padding-top:18px}
+  .hero-copy{min-height:auto}
+  .hero-copy h1{font-size:clamp(76px,28vw,128px)}
+  .section{padding:22px 0 72px}
+  .pickup-shell,.listen-wrap,.discography-shell,.about-shell,.contact-shell{padding:14px}
+  .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .song{grid-template-columns:38px 1fr auto;gap:10px;min-height:72px}
   .song-sub{display:none}
@@ -387,10 +380,10 @@ img{display:block;max-width:100%}
 </head>
 <body>
 
-<div class="topbar">
-  <div class="wrap topbar-inner">
+<div class="site-top">
+  <div class="wrap top-inner">
     <a class="brand" href="#">Re:黎</a>
-    <div class="nav">
+    <div class="top-nav">
       <a href="#pickup">Pick Up</a>
       <a href="#music">Listen</a>
       <a href="#discography">Songs</a>
@@ -400,27 +393,39 @@ img{display:block;max-width:100%}
 </div>
 
 <header class="hero">
-  <div class="hero-inner">
-    <div class="hero-kicker">Re:Rei Official Artist Site</div>
-    <h1>Re:黎</h1>
-    <div class="hero-ruby">リ レ イ</div>
-    <div class="hero-tag">心に残る言葉を、音楽に。<br>そっと寄り添う一曲を。</div>
-    <div class="hero-actions">
-      <a class="hero-btn primary" href="#pickup">Pick Upを見る</a>
-      <a class="hero-btn" href="#discography">Discographyへ</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div>
+        <div class="kicker">Re:Rei Official Artist Site</div>
+        <h1>Re:黎</h1>
+        <div class="ruby">リ レ イ</div>
+        <div class="tag">心に残る言葉を、音楽に。<br>そっと寄り添う一曲を。</div>
+        <div class="hero-actions">
+          <a class="hero-btn primary" href="#pickup">Pick Upを見る</a>
+          <a class="hero-btn" href="#discography">曲一覧へ</a>
+        </div>
+      </div>
+      <div class="kicker">Artist Project / 2026</div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-art"></div>
+      <div class="hero-note">
+        <div class="mini">Featured Message</div>
+        <p>言葉にならない想いを、<br>そっと掬い上げるように。<br>夜に寄り添う音楽を。</p>
+      </div>
     </div>
   </div>
 </header>
 
-<section id="pickup" class="section pickup">
+<section id="pickup" class="section">
   <div class="wrap">
-    <div class="section-head"><strong>01 / PICK UP</strong><span>Featured Track</span></div>
-
-    <div class="pickup-card">
+    <div class="section-head"><strong>01 / Pick Up</strong><span>Featured Track</span></div>
+    <div class="pickup-shell">
       <div class="pickup-grid">
         <div class="pickup-left">
-          <div class="pickup-title-block">
-            <div class="pickup-label">Recommended</div>
+          <div class="pickup-titlebox">
+            <div class="pickup-badge">Recommended</div>
             <h2 class="pickup-title">何度でも君を</h2>
             <div class="pickup-artist">Re:黎（リレイ）</div>
           </div>
@@ -430,13 +435,13 @@ img{display:block;max-width:100%}
         </div>
 
         <div class="pickup-right">
-          <div class="pickup-comment">
-            記憶を失っても、きっとまた君を好きになる。<br>
+          <div class="comment-card">
+            <p>記憶を失っても、きっとまた君を好きになる。<br>
             何度「初めまして」に戻っても、もう一度君を選びたい。<br>
-            そんな想いを込めた一曲です。
+            そんな想いを込めた一曲です。</p>
           </div>
 
-          <div class="video-panel">
+          <div class="video-card">
             <div class="video-frame">
               <iframe
                 src="https://www.youtube.com/embed/WfGOBleOdlc"
@@ -448,7 +453,7 @@ img{display:block;max-width:100%}
             <div class="video-meta"><span>Official Visualizer</span><span>YouTube</span></div>
           </div>
 
-          <div class="spotify-panel">
+          <div class="spotify-card">
             <iframe
               src="https://open.spotify.com/embed/album/5G9Btmq2yfkwHMnJ685ioW"
               title="何度でも君を - Spotify"
@@ -465,15 +470,15 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section id="music" class="section listen">
-  <div class="wrap">
-    <div class="section-head"><strong>02 / LISTEN</strong><span>Streaming & Social</span></div>
+<section id="music" class="section">
+  <div class="wrap listen-wrap">
+    <div class="section-head"><strong>02 / Listen</strong><span>Streaming & Social</span></div>
 
     <div class="service-grid">
-      <a class="listen-card" href="https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL" target="_blank" rel="noopener"><small>Streaming</small><strong>Spotify</strong></a>
-      <a class="listen-card" href="https://music.apple.com/jp/artist/re-%E9%BB%8E-%E3%83%AA%E3%83%AC%E3%82%A4/6784674311" target="_blank" rel="noopener"><small>Streaming</small><strong>Apple Music</strong></a>
-      <a class="listen-card" href="https://music.amazon.co.jp/artists/B0H6QWWG61" target="_blank" rel="noopener"><small>Streaming</small><strong>Amazon Music</strong></a>
-      <a class="listen-card" href="https://music.youtube.com/channel/UC_30okHm1kY7a_XroV0SYvw" target="_blank" rel="noopener"><small>Streaming</small><strong>YouTube Music</strong></a>
+      <a class="service-card" href="https://open.spotify.com/artist/7p5lwUH5MCGFGlYJPn1UXL" target="_blank" rel="noopener"><small>Streaming</small><strong>Spotify</strong></a>
+      <a class="service-card" href="https://music.apple.com/jp/artist/re-%E9%BB%8E-%E3%83%AA%E3%83%AC%E3%82%A4/6784674311" target="_blank" rel="noopener"><small>Streaming</small><strong>Apple Music</strong></a>
+      <a class="service-card" href="https://music.amazon.co.jp/artists/B0H6QWWG61" target="_blank" rel="noopener"><small>Streaming</small><strong>Amazon Music</strong></a>
+      <a class="service-card" href="https://music.youtube.com/channel/UC_30okHm1kY7a_XroV0SYvw" target="_blank" rel="noopener"><small>Streaming</small><strong>YouTube Music</strong></a>
     </div>
 
     <div class="social-row">
@@ -484,21 +489,23 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section id="discography" class="section discography">
+<section id="discography" class="section">
   <div class="wrap">
-    <div class="section-head"><strong>03 / SONGS</strong><span id="trackCount"></span></div>
-    <div class="disco-top">
-      <h2 class="disco-title">Discography</h2>
-      <div class="searchbar"><input id="songSearch" type="search" placeholder="曲名を検索"></div>
+    <div class="section-head"><strong>03 / Songs</strong><span id="trackCount"></span></div>
+    <div class="discography-shell">
+      <div class="disco-top">
+        <h2 class="disco-title">Discography</h2>
+        <div class="searchbar"><input id="songSearch" type="search" placeholder="曲名を検索"></div>
+      </div>
+      <div id="songGrid" class="grid"></div>
     </div>
-    <div id="songGrid" class="grid"></div>
   </div>
 </section>
 
-<section class="section about">
+<section class="section">
   <div class="wrap">
-    <div class="section-head"><strong>04 / ABOUT</strong><span>Re:黎 / リレイ</span></div>
-    <div class="about-grid">
+    <div class="section-head"><strong>04 / About</strong><span>Re:黎 / リレイ</span></div>
+    <div class="about-shell">
       <div class="about-mark">Re:黎</div>
       <div class="about-copy">
         言葉にならない感情や、誰かの心に残る瞬間を音楽へ。<br>
@@ -509,15 +516,15 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<section id="contact" class="contact">
-  <div class="wrap">
+<section id="contact" class="section">
+  <div class="wrap contact-shell">
     <h2>Contact</h2>
     <p>楽曲使用・制作依頼・その他お問い合わせは、InstagramのDMよりお願いいたします。</p>
-    <a class="btn" href="https://www.instagram.com/rerei_music/" target="_blank" rel="noopener">Instagramで問い合わせる</a>
+    <a href="https://www.instagram.com/rerei_music/" target="_blank" rel="noopener">Instagramで問い合わせる</a>
   </div>
 </section>
 
-<footer class="footer">
+<footer>
   <div class="wrap">© 2026 Re:黎（リレイ） / OFFICIAL ARTIST SITE</div>
 </footer>
 <script>
