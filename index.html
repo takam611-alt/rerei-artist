@@ -116,43 +116,52 @@ img{display:block;max-width:100%}
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.24)),
-    radial-gradient(circle at 70% 18%,rgba(255,255,255,.18),transparent 22%),
-    url("hero.svg") center/cover no-repeat;
-  filter:saturate(.92);
+    linear-gradient(180deg,rgba(5,7,14,.03) 0%,rgba(5,7,14,.14) 58%,rgba(3,5,10,.46) 100%),
+    url("hero-cool.png") center/cover no-repeat;
+  filter:contrast(1.04) saturate(.96) brightness(.98);
+}
+.hero-art::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(7,9,16,.10) 54%,rgba(7,9,16,.54) 100%);
 }
 .hero-overlay{
   position:absolute;
-  left:18px;
-  right:18px;
-  bottom:18px;
+  left:20px;
+  right:20px;
+  bottom:20px;
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
   gap:18px;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.22);
+  padding:16px 0 0;
+  border-top:1px solid rgba(255,255,255,.28);
   color:#f6f1ea;
+  z-index:2;
 }
 .hero-overlay .eyebrow{
   font-size:10px;
-  letter-spacing:.18em;
+  letter-spacing:.22em;
   text-transform:uppercase;
-  color:#d0c7bc;
+  color:rgba(246,241,234,.82);
 }
 .hero-overlay .hero-right-title{
-  margin-top:8px;
+  margin-top:10px;
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(24px,3.2vw,40px);
-  line-height:1;
+  font-size:clamp(28px,3.6vw,46px);
+  line-height:1.18;
   font-weight:400;
+  letter-spacing:.01em;
+  text-shadow:0 2px 18px rgba(0,0,0,.18);
 }
 .hero-overlay .year{
   font-size:10px;
-  letter-spacing:.16em;
+  letter-spacing:.18em;
   text-transform:uppercase;
-  color:#bdb3a8;
+  color:rgba(246,241,234,.86);
   white-space:nowrap;
+  padding-left:16px;
 }
 
 .section{padding:28px 0 92px}
@@ -381,7 +390,7 @@ footer{
   .disco-top{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .hero-overlay{left:12px;right:12px;bottom:12px}
+  .hero-overlay{left:12px;right:12px;bottom:12px;padding-top:12px}.hero-overlay .hero-right-title{font-size:clamp(22px,6vw,30px);line-height:1.24}
   .wrap{width:min(100% - 24px,1200px)}
   .hero{padding-top:18px}
   .hero-copy{min-height:auto}
@@ -430,7 +439,7 @@ footer{
       <div class="hero-overlay">
         <div>
           <div class="eyebrow">Re:黎 Official Artist Site</div>
-          <div class="hero-right-title">心に残る言葉を、音楽に。</div>
+          <div class="hero-right-title">心に残る言葉を、<br>音楽に。</div>
         </div>
         <div class="year">2026</div>
       </div>
