@@ -383,6 +383,39 @@ img{display:block;max-width:100%}
   line-height:2;
 }
 
+.support-shell{
+  background:#f3ede5;
+  border:1px solid var(--line);
+  padding:34px 22px;
+  text-align:center;
+}
+.support-shell h2{
+  margin:0 0 20px;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(38px,6vw,76px);
+  font-weight:400;line-height:1;letter-spacing:-.045em;
+}
+.support-shell p{
+  max-width:720px;margin:0 auto;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(16px,2vw,21px);
+  line-height:2;color:#5f574f;
+}
+.support-shell a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:0 28px;margin-top:26px;
+  background:var(--ink);color:var(--light);
+  border:1px solid var(--ink);font-size:12px;letter-spacing:.06em;
+  transition:.2s ease;
+}
+.support-shell a:hover{opacity:.84;transform:translateY(-1px)}
+.support-note{
+  margin-top:10px!important;
+  font-family:inherit!important;
+  font-size:10px!important;line-height:1.6!important;
+  letter-spacing:.05em;color:var(--muted)!important;
+}
+
 .contact-shell{
   background:var(--deep2);
   color:#f5f0ea;
@@ -425,7 +458,7 @@ footer{
   .hero-copy{min-height:auto}
   .hero-copy h1{font-size:clamp(76px,28vw,128px)}
   .section{padding:22px 0 72px}
-  .pickup-shell,.listen-wrap,.discography-shell,.about-shell,.contact-shell{padding:14px}
+  .pickup-shell,.listen-wrap,.discography-shell,.about-shell,.support-shell,.contact-shell{padding:14px}
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .song{grid-template-columns:38px 1fr auto;gap:10px;min-height:72px}
@@ -570,6 +603,24 @@ footer{
         Re:黎（リレイ）は、日々の中で生まれる想いや、ふと心に残る言葉をメロディとともに届ける音楽プロジェクトです。<br><br>
         誰かの夜にそっと寄り添い、明日へ進むための一曲になれるように。
       </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="support" class="section">
+  <div class="wrap">
+    <div class="section-head"><strong>05 / Support</strong><span>Support Re:黎</span></div>
+    <div class="support-shell">
+      <h2>Support Re:黎</h2>
+      <p>
+        いつもRe:黎の音楽を聴いていただき、ありがとうございます。<br>
+        「応援したい」と思ってくださる方へ、ほしい物リストを公開しています。<br>
+        聴いていただけるだけでも十分うれしいです。<br>
+        無理のない範囲で、気持ちとして受け取らせていただけたらうれしいです。
+      </p>
+      <a href="https://www.amazon.jp/hz/wishlist/ls/1EMJO5XJ333MA?ref_=wl_share" target="_blank" rel="noopener noreferrer">Re:黎を応援する</a>
+      <p class="support-note">Amazonほしい物リストが開きます</p>
     </div>
   </div>
 </section>
