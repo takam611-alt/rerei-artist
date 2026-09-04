@@ -181,6 +181,11 @@ img{display:block;max-width:100%}
 }
 .section-head span{color:var(--muted)}
 
+/* Aboutだけ、見出し側と下側の余白感を揃える */
+.about-section{
+  padding-bottom:34px;
+}
+
 .pickup-shell{
   background:var(--paper);
   border:1px solid var(--line);
@@ -338,7 +343,7 @@ img{display:block;max-width:100%}
 }
 .disco-list-wrap{position:relative}
 .disco-list-wrap.collapsed{
-  max-height:390px;
+  max-height:760px;
   overflow:hidden;
 }
 .disco-list-wrap.collapsed::after{
@@ -508,11 +513,13 @@ footer{
   .hero-copy{min-height:auto}
   .hero-copy h1{font-size:clamp(76px,28vw,128px)}
   .section{padding:22px 0 72px}
-  .pickup-shell,.listen-wrap,.discography-shell,.about-shell,.support-shell,.contact-shell{padding:14px}
+  .pickup-shell,.listen-wrap,.discography-shell,.support-shell,.contact-shell{padding:14px}
+  .about-shell{padding:14px}
+  .about-section{padding-bottom:22px}
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .song{grid-template-columns:38px 1fr auto;gap:10px;min-height:72px}
-  .disco-list-wrap.collapsed{max-height:360px}
+  .disco-list-wrap.collapsed{max-height:720px}
   .disco-list-wrap.collapsed::after{height:135px}
   .more-songs-wrap{margin-top:-48px}
   .more-songs-btn{min-height:54px;font-size:16px}
@@ -660,7 +667,7 @@ footer{
   </div>
 </section>
 
-<section class="section">
+<section class="section about-section">
   <div class="wrap">
     <div class="section-head"><strong>04 / About</strong><span>Re:黎 / リレイ</span></div>
     <div class="about-shell">
