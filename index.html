@@ -383,6 +383,40 @@ img{display:block;max-width:100%}
   line-height:2;
 }
 
+.support-shell{
+  background:#f3ede5;
+  border:1px solid var(--line);
+  padding:34px 22px;
+  text-align:center;
+}
+.support-shell h2{
+  margin:0 0 20px;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(38px,6vw,76px);
+  font-weight:400;line-height:1;letter-spacing:-.045em;
+}
+.support-shell p{
+  max-width:720px;margin:0 auto;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(16px,2vw,21px);
+  line-height:2;color:#5f574f;
+}
+.support-shell a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:0 28px;margin-top:26px;
+  background:var(--ink);color:var(--light);
+  border:1px solid var(--ink);font-size:12px;letter-spacing:.06em;
+  transition:.2s ease;
+}
+.support-shell a:hover{opacity:.84;transform:translateY(-1px)}
+.support-note{
+  margin-top:10px!important;
+  text-align:center!important;
+  font-family:inherit!important;
+  font-size:10px!important;line-height:1.6!important;
+  letter-spacing:.05em;color:var(--muted)!important;
+}
+
 .contact-shell{
   background:var(--deep2);
   color:#f5f0ea;
@@ -425,12 +459,13 @@ footer{
   .hero-copy{min-height:auto}
   .hero-copy h1{font-size:clamp(76px,28vw,128px)}
   .section{padding:22px 0 72px}
-  .pickup-shell,.listen-wrap,.discography-shell,.about-shell,.contact-shell{padding:14px}
+  .pickup-shell,.listen-wrap,.discography-shell,.about-shell,.support-shell,.contact-shell{padding:14px}
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .song{grid-template-columns:38px 1fr auto;gap:10px;min-height:72px}
   .song-sub{display:none}
 }
+.support-copy{max-width:720px;margin:0 auto 22px;text-align:left;line-height:1.9;}
 </style>
 </head>
 <body>
@@ -574,6 +609,23 @@ footer{
   </div>
 </section>
 
+
+<section id="support" class="section">
+  <div class="wrap">
+    <div class="section-head"><strong>05 / Support</strong><span>Support Re:黎</span></div>
+    <div class="support-shell">
+      <h2>Support Re:黎</h2>
+      <p class="support-copy">
+        いつもRe:黎の音楽を聴いていただき、ありがとうございます。<br>
+        もし「もう少し応援したい」と思ってくださる方がいれば、<br>
+        無理のない範囲で、そっと応援していただけたらうれしいです。
+      </p>
+      <a href="https://www.amazon.jp/hz/wishlist/ls/1EMJO5XJ333MA?ref_=wl_share" target="_blank" rel="noopener noreferrer">Re:黎を応援する</a>
+      <p class="support-note">Amazonページが開きます</p>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="section">
   <div class="wrap contact-shell">
     <h2>Contact</h2>
@@ -587,6 +639,11 @@ footer{
 </footer>
 <script>
 const SONGS = [
+["声で繋いで","https://distrokid.com/hyperfollow/re43/nvjcnTEjrBq"],
+["その先もずっと","https://distrokid.com/hyperfollow/re43/MAFHgBfSVfQ"],
+["キミだけに","https://distrokid.com/hyperfollow/re43/LI3hmnLeN7F"],
+["未来への手紙","https://distrokid.com/hyperfollow/re43/cX5Ovk005m5"],
+["窓の向こう","https://distrokid.com/hyperfollow/re43/1zrUOZXb4dr"],
 ["何度でも君を","https://distrokid.com/hyperfollow/re43/tb1vwNXmCYf"],
 ["またねの続き","https://distrokid.com/hyperfollow/re43/BbWoogVMQgJ"],
 ["もしも今日が","https://distrokid.com/hyperfollow/re43/bRZ9oz4eM0A"],
@@ -644,12 +701,7 @@ const SONGS = [
 ["君の歩幅で。","https://distrokid.com/hyperfollow/re43/IFgbC8hBZ7n"],
 ["君がいる温度で","https://distrokid.com/hyperfollow/re43/vhkDrSlEAYy"],
 ["泣いていい。","https://distrokid.com/hyperfollow/re43/d0zL2sQI1fK"],
-["もう片方の未来","https://distrokid.com/hyperfollow/re43/FjKMYtWclTy"],
-["声で繋いで","https://distrokid.com/hyperfollow/re43/nvjcnTEjrBq"],
-["その先もずっと","https://distrokid.com/hyperfollow/re43/MAFHgBfSVfQ"],
-["キミだけに","https://distrokid.com/hyperfollow/re43/LI3hmnLeN7F"],
-["未来への手紙","https://distrokid.com/hyperfollow/re43/cX5Ovk005m5"],
-["窓の向こう","https://distrokid.com/hyperfollow/re43/1zrUOZXb4dr"]
+["もう片方の未来","https://distrokid.com/hyperfollow/re43/FjKMYtWclTy"]
 ];
 const SPOTIFY_ALBUMS={"何度でも君を":"5G9Btmq2yfkwHMnJ685ioW","またねの続き":"6zj4Xa12WFn2qcqerPznMl","もしも今日が":"44FB7gj3C36lhB3ckyXA7X","最後の花火":"0ctwb5WJ1AmYLUQ8tiMPEv","好きって":"2tuTbdXO04aeHdSZNWQu2u","声だけで":"2EqIvOMYkHorLuQ5MmydoV","幸せってたぶん":"08EWAWsKCDYC9gNQUZyiW1","明日も君と":"0nxDZAMd2q7EFk2YzsJtaY","少しだけ未来へ":"3dZQ4MqVuCWtaChuBvNltE","大切なもの":"1IX6R9sUdGSYG843dGXdMH","僕の弱いところ":"1yPzhqQ8b5IK7qjjFR9CYk","涙の先に":"46YdrGSJIcQZhhnMeV8Ro4","君といる理由":"7AfUiEym9X93OhVvTnWZDf","何度でも恋をして":"1TzdRM9j0cLsxXRdNbxaky","君のとなり":"4dWIxpmamCLiREIDxLlLhk","ずっと、君と":"4WcozK1YEcn7BsFSenxIlr","ありがとうを君へ":"16adhKVq6rrL3ypxpwa0bC","君がくれた毎日":"2LLs21UHA6D3hr31biWMcY","君の好きなところ":"7Ew4cA4ChQfsEar2ZDerG9","83億分の君":"4szErgKFLcHAaQMqrV0ToC","見えない糸":"4E8jqgd7YM1Fea8hVw2gZM","ふたりごと":"2uJyhJ4W3xgjgFonOSsFM8","会いたい理由":"5YQ0kdcFn6UpDoMGXZDvAQ","未来への下書き":"2T90lIful2LperPYKFYZia","ふたりの水平線":"3SeoXxIfTmjq0jA3aO4RQF","白紙に咲く花":"0B4A9BpNEzoHGcRYSoyMRb","空白の花言葉":"1Yi3DCVmpW71zi91RqCfQb","はじまりの栞":"6YyCdwwq23kB336M4S4yw0","花の栞":"4aYuZ31wwbJ9lZhQWsPr0P","花束の続きを":"1BC4qXbme41QZmaaSAxrpU","今日の続きを":"0Mo9AbKf2KpEUyVMbbURQj","最後の欠片":"3edlgkCqxBrqSlYonFJjwZ","消せないしおり":"4FhSTuGkzIYES6jIvZwatJ","心のものさし":"4YOG0zvPksUPoglUvvvbJL","ふたりの余白":"1GT4ccmanlIjX0mE4qCHI9","離れても":"0P6dPj3wgR5kau1y10NY93","叶わない恋":"6qjdhrJKQDg6hR4AS9dEal","最後に笑った君へ":"3hMTQNiEkwIDFe4Kndtb6i","静かな約束":"08TL2cZMQMEjhBinmIPBw5","それでも明日は来る。":"6CTbt4QmEs8idYVt3LZkhX","立て":"4jTZQa23lMBtZ08M1yrCP0","君がいた季節":"78wGbEVrYJJOAJdQvvJ1xd","風のあと":"682pZuGtjjiJAZ1lNp3TiO","今日を越えて":"2kfh5p6QoXMUTTUwZYZg5y","ごめんねと言えなくて":"1mZxwQm6SkuFkiA8bMuJoD","わがままでもいい":"7nz1mHpenUlkc9kjZAZiNi","今日だけは泣こう":"5A4PNlJyncikohxhdfpsmH","同じ気持ちでいられたら":"3LGGi6sKlwyS25AnSbHEKP","君がいたから":"4L9ouxwEguba4mJ2fPWCVm","君がいた世界":"0WY7jzvJq82ERZJo971Q7N","笑顔の理由":"0bYGwx1UIJ2VCkjHw1CyaX","弱音":"0uBczduxHPqURqfty9zEXq","助けてと言えなくて":"6D1Isbooz2VgzDDEyuNTnd","君の耳元で":"5frFUwS7Wer4JD3jovRBAi","君の歩幅で。":"53qK7og6fWaYEjXEir9FZS","君がいる温度で":"6bL8p7QJhOaFZErzRBcXJt","泣いていい。":"4JAopTXU3aqRL6bXEKWT0N","もう片方の未来":"4PMpH0JR4QY7ZfBYARcqLQ","声で繋いで":"2Xf7faA3lYnntuGHHSkvj0","その先もずっと":"7dJJjX1T84UURqQiEhakyO","キミだけに":"7F0T6tYDWJ6p5VZ02yYKL1","未来への手紙":"5WNDO7ygzuF5kVnLorUAgS","窓の向こう":"3bAvTgycmOzQ0JEBtipfc3"};
 const grid=document.getElementById("songGrid"), search=document.getElementById("songSearch"), count=document.getElementById("trackCount");
@@ -667,7 +719,7 @@ function render(q=""){
       <div class="thumb"><span class="thumb-mark">Re:黎</span></div>
       <div class="song-copy">
         <div class="song-title">${esc(x[0])}</div>
-        <div class="song-sub"><span class="spotify-pill">Spotifyで試聴</span></div>
+        <div class="song-sub"><span class="spotify-pill">▶ 試聴</span></div>
       </div>
       <div class="arrow">›</div>
     </div>
