@@ -331,7 +331,56 @@ img{display:block;max-width:100%}
   width:100%;border:0;border-bottom:1px solid rgba(16,16,16,.18);
   background:transparent;padding:12px 0;border-radius:0;outline:none;color:var(--ink);
 }
-.grid{display:block;border-top:1px solid rgba(16,16,16,.12)}
+.grid{
+  display:block;
+  border-top:1px solid rgba(16,16,16,.12);
+  position:relative;
+}
+.disco-list-wrap{position:relative}
+.disco-list-wrap.collapsed{
+  max-height:390px;
+  overflow:hidden;
+}
+.disco-list-wrap.collapsed::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:150px;
+  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(247,242,234,0),rgba(247,242,234,.72) 45%,rgba(247,242,234,1) 88%);
+}
+.more-songs-wrap{
+  position:relative;
+  margin-top:-52px;
+  padding-top:28px;
+  text-align:center;
+  z-index:3;
+}
+.more-songs-btn{
+  appearance:none;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+  min-width:min(100%,320px);
+  min-height:58px;
+  padding:0 28px;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:17px;
+  letter-spacing:.08em;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.more-songs-btn:hover{background:var(--ink);color:var(--light)}
+.more-songs-sub{
+  margin-top:8px;
+  font-size:10px;
+  letter-spacing:.12em;
+  color:var(--muted);
+}
+.disco-list-wrap.expanded + .more-songs-wrap{
+  margin-top:18px;
+  padding-top:0;
+}
 .song{
   display:grid;grid-template-columns:42px 1fr auto;
   gap:16px;align-items:center;
@@ -463,6 +512,10 @@ footer{
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .song{grid-template-columns:38px 1fr auto;gap:10px;min-height:72px}
+  .disco-list-wrap.collapsed{max-height:360px}
+  .disco-list-wrap.collapsed::after{height:135px}
+  .more-songs-wrap{margin-top:-48px}
+  .more-songs-btn{min-height:54px;font-size:16px}
   .song-sub{
     display:block;
     margin-top:4px;
@@ -596,7 +649,13 @@ footer{
         <h2 class="disco-title">Discography</h2>
         <div class="searchbar"><input id="songSearch" type="search" placeholder="曲名を検索"></div>
       </div>
-      <div id="songGrid" class="grid"></div>
+      <div id="discoListWrap" class="disco-list-wrap collapsed">
+          <div id="songGrid" class="grid"></div>
+        </div>
+        <div class="more-songs-wrap">
+          <button id="moreSongsBtn" class="more-songs-btn" type="button">MORE SONGS</button>
+          <div id="moreSongsSub" class="more-songs-sub">すべての楽曲を見る</div>
+        </div>
     </div>
   </div>
 </section>
@@ -710,12 +769,33 @@ const SONGS = [
 ["もう片方の未来","https://distrokid.com/hyperfollow/re43/FjKMYtWclTy"]
 ];
 const SPOTIFY_ALBUMS={"何度でも君を":"5G9Btmq2yfkwHMnJ685ioW","またねの続き":"6zj4Xa12WFn2qcqerPznMl","もしも今日が":"44FB7gj3C36lhB3ckyXA7X","最後の花火":"0ctwb5WJ1AmYLUQ8tiMPEv","好きって":"2tuTbdXO04aeHdSZNWQu2u","声だけで":"2EqIvOMYkHorLuQ5MmydoV","幸せってたぶん":"08EWAWsKCDYC9gNQUZyiW1","明日も君と":"0nxDZAMd2q7EFk2YzsJtaY","少しだけ未来へ":"3dZQ4MqVuCWtaChuBvNltE","大切なもの":"1IX6R9sUdGSYG843dGXdMH","僕の弱いところ":"1yPzhqQ8b5IK7qjjFR9CYk","涙の先に":"46YdrGSJIcQZhhnMeV8Ro4","君といる理由":"7AfUiEym9X93OhVvTnWZDf","何度でも恋をして":"1TzdRM9j0cLsxXRdNbxaky","君のとなり":"4dWIxpmamCLiREIDxLlLhk","ずっと、君と":"4WcozK1YEcn7BsFSenxIlr","ありがとうを君へ":"16adhKVq6rrL3ypxpwa0bC","君がくれた毎日":"2LLs21UHA6D3hr31biWMcY","君の好きなところ":"7Ew4cA4ChQfsEar2ZDerG9","83億分の君":"4szErgKFLcHAaQMqrV0ToC","見えない糸":"4E8jqgd7YM1Fea8hVw2gZM","ふたりごと":"2uJyhJ4W3xgjgFonOSsFM8","会いたい理由":"5YQ0kdcFn6UpDoMGXZDvAQ","未来への下書き":"2T90lIful2LperPYKFYZia","ふたりの水平線":"3SeoXxIfTmjq0jA3aO4RQF","白紙に咲く花":"0B4A9BpNEzoHGcRYSoyMRb","空白の花言葉":"1Yi3DCVmpW71zi91RqCfQb","はじまりの栞":"6YyCdwwq23kB336M4S4yw0","花の栞":"4aYuZ31wwbJ9lZhQWsPr0P","花束の続きを":"1BC4qXbme41QZmaaSAxrpU","今日の続きを":"0Mo9AbKf2KpEUyVMbbURQj","最後の欠片":"3edlgkCqxBrqSlYonFJjwZ","消せないしおり":"4FhSTuGkzIYES6jIvZwatJ","心のものさし":"4YOG0zvPksUPoglUvvvbJL","ふたりの余白":"1GT4ccmanlIjX0mE4qCHI9","離れても":"0P6dPj3wgR5kau1y10NY93","叶わない恋":"6qjdhrJKQDg6hR4AS9dEal","最後に笑った君へ":"3hMTQNiEkwIDFe4Kndtb6i","静かな約束":"08TL2cZMQMEjhBinmIPBw5","それでも明日は来る。":"6CTbt4QmEs8idYVt3LZkhX","立て":"4jTZQa23lMBtZ08M1yrCP0","君がいた季節":"78wGbEVrYJJOAJdQvvJ1xd","風のあと":"682pZuGtjjiJAZ1lNp3TiO","今日を越えて":"2kfh5p6QoXMUTTUwZYZg5y","ごめんねと言えなくて":"1mZxwQm6SkuFkiA8bMuJoD","わがままでもいい":"7nz1mHpenUlkc9kjZAZiNi","今日だけは泣こう":"5A4PNlJyncikohxhdfpsmH","同じ気持ちでいられたら":"3LGGi6sKlwyS25AnSbHEKP","君がいたから":"4L9ouxwEguba4mJ2fPWCVm","君がいた世界":"0WY7jzvJq82ERZJo971Q7N","笑顔の理由":"0bYGwx1UIJ2VCkjHw1CyaX","弱音":"0uBczduxHPqURqfty9zEXq","助けてと言えなくて":"6D1Isbooz2VgzDDEyuNTnd","君の耳元で":"5frFUwS7Wer4JD3jovRBAi","君の歩幅で。":"53qK7og6fWaYEjXEir9FZS","君がいる温度で":"6bL8p7QJhOaFZErzRBcXJt","泣いていい。":"4JAopTXU3aqRL6bXEKWT0N","もう片方の未来":"4PMpH0JR4QY7ZfBYARcqLQ","声で繋いで":"2Xf7faA3lYnntuGHHSkvj0","その先もずっと":"7dJJjX1T84UURqQiEhakyO","キミだけに":"7F0T6tYDWJ6p5VZ02yYKL1","未来への手紙":"5WNDO7ygzuF5kVnLorUAgS","窓の向こう":"3bAvTgycmOzQ0JEBtipfc3"};
-const grid=document.getElementById("songGrid"), search=document.getElementById("songSearch"), count=document.getElementById("trackCount");
+const grid=document.getElementById("songGrid"),
+      search=document.getElementById("songSearch"),
+      count=document.getElementById("trackCount"),
+      discoListWrap=document.getElementById("discoListWrap"),
+      moreSongsBtn=document.getElementById("moreSongsBtn"),
+      moreSongsSub=document.getElementById("moreSongsSub");
+let showAllSongs=false;
 count.textContent=SONGS.length+" tracks";
 function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function render(q=""){
   q=q.trim().toLowerCase();
   const list=SONGS.filter(x=>x[0].toLowerCase().includes(q));
+  const searching=q.length>0;
+
+  if(searching){
+    discoListWrap.classList.remove("collapsed");
+    discoListWrap.classList.add("expanded");
+    moreSongsBtn.style.display="none";
+    moreSongsSub.style.display="none";
+  }else{
+    moreSongsBtn.style.display="";
+    moreSongsSub.style.display="";
+    discoListWrap.classList.toggle("collapsed",!showAllSongs);
+    discoListWrap.classList.toggle("expanded",showAllSongs);
+    moreSongsBtn.textContent=showAllSongs?"CLOSE SONGS":"MORE SONGS";
+    moreSongsSub.textContent=showAllSongs?"表示を閉じる":"すべての楽曲を見る";
+  }
 
   grid.innerHTML=list.map(x=>`
     <div class="song spotify-enabled" role="button" tabindex="0"
@@ -771,7 +851,15 @@ function toggleSpotify(card){
   card.insertAdjacentElement("afterend",row);
   row.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-search.addEventListener("input",e=>render(e.target.value));render();
+search.addEventListener("input",e=>render(e.target.value));
+moreSongsBtn.addEventListener("click",()=>{
+  showAllSongs=!showAllSongs;
+  render(search.value);
+  if(!showAllSongs){
+    document.getElementById("discography").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+});
+render();
 </script>
 </body>
 </html>
