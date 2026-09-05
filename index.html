@@ -491,22 +491,6 @@ img{display:block;max-width:100%}
   color:var(--muted);
 }
 
-.fan-pick-badge{
-  display:inline-flex;
-  align-items:center;
-  margin-left:6px;
-  padding:3px 7px 2px;
-  border:1px solid rgba(119,45,61,.28);
-  border-radius:999px;
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  line-height:1;
-  letter-spacing:.06em;
-  vertical-align:middle;
-  color:#7b3544;
-  background:#f3e3e5;
-  white-space:nowrap;
-}
 .vote-overview{
   margin:0 0 22px;
   padding:18px;
@@ -614,7 +598,7 @@ img{display:block;max-width:100%}
 .pick-badge{
   display:inline-flex;
   align-items:center;
-  margin-left:8px;
+  margin-left:2px;
   padding:3px 7px 2px;
   border:1px solid rgba(16,16,16,.28);
   border-radius:999px;
@@ -634,8 +618,8 @@ img{display:block;max-width:100%}
   color:var(--muted);
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  justify-content:flex-start;
+  gap:8px;
   width:100%;
 }
 .song-copy{
@@ -1132,8 +1116,7 @@ function refreshTodaySongBadge(){
   const title=todaySong[0];
   todayTitle.innerHTML=
     esc(title)+
-    (PICK_SONGS.has(title)?'<span class="pick-badge">★ PICK</span>':"")+
-    (FAN_PICK_SONGS.has(title)?'<span class="fan-pick-badge">♥ FAN PICK</span>':"");
+    (PICK_SONGS.has(title)?'<span class="pick-badge">★ PICK</span>':"");
 }
 
 async function loadVotes(){
@@ -1268,9 +1251,10 @@ function render(q=""){
          data-hyperfollow="${x[1]}">
       <div class="thumb"><span class="thumb-mark">Re:黎</span></div>
       <div class="song-copy">
-        <div class="song-title">${esc(x[0])}${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}${FAN_PICK_SONGS.has(x[0])?'<span class="fan-pick-badge">♥ FAN PICK</span>':""}</div>
+        <div class="song-title">${esc(x[0])}</div>
         <div class="song-sub">
           <span class="spotify-pill">▶ 試聴</span>
+          ${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}
         </div>
       </div>
       <button class="vote-btn ${TODAY_VOTED_SONGS.has(x[0])?"voted":""}" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票する"}</button>
