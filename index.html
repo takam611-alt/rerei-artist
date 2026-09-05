@@ -896,6 +896,92 @@ footer{
   }
 }
 
+
+.unlock-card{
+  margin:0 0 22px;
+  padding:18px;
+  border:1px solid rgba(16,16,16,.12);
+  background:linear-gradient(180deg,#11131a 0%,#1b1d27 100%);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.unlock-card::after{
+  content:"";
+  position:absolute;
+  inset:auto -20% -55% -20%;
+  height:140px;
+  background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%);
+  pointer-events:none;
+}
+.unlock-kicker{
+  font-size:10px;
+  letter-spacing:.18em;
+  opacity:.65;
+  margin-bottom:8px;
+}
+.unlock-title{
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(24px,4vw,38px);
+  line-height:1.15;
+  margin:0 0 6px;
+}
+.unlock-copy{
+  font-size:12px;
+  line-height:1.7;
+  opacity:.82;
+  margin-bottom:16px;
+}
+.unlock-bar{
+  height:12px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.unlock-fill{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#c9a76c,#f6dfad);
+  transition:width .8s cubic-bezier(.2,.8,.2,1);
+}
+.unlock-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:10px;
+  font-size:11px;
+  opacity:.8;
+}
+.unlock-meta strong{
+  font-size:13px;
+  color:#fff;
+}
+.unlock-card.bump{
+  animation:unlockBump .65s ease;
+}
+@keyframes unlockBump{
+  0%{transform:scale(1)}
+  35%{transform:scale(1.015)}
+  100%{transform:scale(1)}
+}
+.unlock-plus{
+  position:absolute;
+  right:18px;
+  top:18px;
+  font-size:12px;
+  opacity:0;
+  transform:translateY(8px);
+}
+.unlock-plus.show{
+  animation:unlockPlus .9s ease forwards;
+}
+@keyframes unlockPlus{
+  0%{opacity:0;transform:translateY(8px)}
+  25%{opacity:1}
+  100%{opacity:0;transform:translateY(-16px)}
+}
+
 </style>
 </head>
 <body>
@@ -1033,6 +1119,19 @@ footer{
   <div class="wrap">
     <div class="section-head"><strong>03 / Songs</strong><span id="trackCount"></span></div>
     <div class="discography-shell">
+      <div id="unlockCard" class="unlock-card">
+        <div id="unlockPlus" class="unlock-plus">+1</div>
+        <div class="unlock-kicker">NEW SONG UNLOCK</div>
+        <h3 class="unlock-title">みんなの投票で、新曲を解放。</h3>
+        <div id="unlockCopy" class="unlock-copy">1人1日1カウント。みんなでゲージを100%にしよう。</div>
+        <div class="unlock-bar" aria-label="新曲解放ゲージ">
+          <div id="unlockFill" class="unlock-fill"></div>
+        </div>
+        <div class="unlock-meta">
+          <span><strong id="unlockPercent">0%</strong></span>
+          <span id="unlockRemain">あと30カウント</span>
+        </div>
+      </div>
       <div class="vote-overview">
         <div class="vote-overview-head">
           <h3>みんなのPICK</h3>
@@ -1216,6 +1315,33 @@ async function voteApi(method="GET", body=null){
   return data;
 }
 
+
+function renderUnlock(unlock, animate=false){
+  if(!unlock) return;
+  const card=document.getElementById("unlockCard");
+  const fill=document.getElementById("unlockFill");
+  const pct=document.getElementById("unlockPercent");
+  const remain=document.getElementById("unlockRemain");
+  const copy=document.getElementById("unlockCopy");
+  if(fill) fill.style.width=`${unlock.percent||0}%`;
+  if(pct) pct.textContent=`${unlock.percent||0}%`;
+  if(remain) remain.textContent=unlock.unlocked ? "新曲解放！" : `あと${unlock.remaining}カウント`;
+  if(copy) copy.textContent=unlock.unlocked
+    ? "ゲージ達成。新曲が解放されました。"
+    : "1人1日1カウント。みんなでゲージを100%にしよう。";
+  if(animate && card){
+    card.classList.remove("bump");
+    void card.offsetWidth;
+    card.classList.add("bump");
+    const plus=document.getElementById("unlockPlus");
+    if(plus){
+      plus.classList.remove("show");
+      void plus.offsetWidth;
+      plus.classList.add("show");
+    }
+  }
+}
+
 function renderFanRanking(ranking=[]){
   const box=document.getElementById("fanRanking");
   if(!box) return;
@@ -1273,6 +1399,7 @@ async function loadVotes(){
     const data=await voteApi("GET");
     if(!data.ok) throw new Error(data.error||"vote_load_failed");
     updateVoteState(data.today);
+    renderUnlock(data.unlock,false);
     renderFanRanking(data.ranking||[]);
   }catch(e){
     const status=document.getElementById("voteStatus");
@@ -1346,6 +1473,7 @@ async function castVote(title, btn){
       if(floating && VOTES_REMAINING>0) floating.classList.add("show");
 
       animateVoteCounter();
+      renderUnlock(data.unlock, !!data.unlock_incremented);
 
       window.setTimeout(()=>{
         if(floating && VOTES_REMAINING<=0) floating.classList.remove("show");
