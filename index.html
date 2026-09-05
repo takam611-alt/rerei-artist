@@ -822,6 +822,80 @@ footer{
   }
 }
 
+
+.vote-btn{
+  position:relative;
+  overflow:visible;
+}
+.vote-btn.vote-pop{
+  animation:votePop .48s cubic-bezier(.2,.9,.2,1);
+}
+@keyframes votePop{
+  0%{transform:scale(1)}
+  38%{transform:scale(1.16)}
+  70%{transform:scale(.96)}
+  100%{transform:scale(1)}
+}
+.vote-heart-burst{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:visible;
+}
+.vote-heart-burst span{
+  position:absolute;
+  left:50%;
+  top:50%;
+  font-size:12px;
+  line-height:1;
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.65);
+  animation:heartFloat .62s ease-out forwards;
+}
+.vote-heart-burst span:nth-child(1){--x:-24px;--y:-32px;animation-delay:0s}
+.vote-heart-burst span:nth-child(2){--x:0px;--y:-40px;animation-delay:.03s}
+.vote-heart-burst span:nth-child(3){--x:24px;--y:-30px;animation-delay:.06s}
+.vote-heart-burst span:nth-child(4){--x:-12px;--y:-46px;animation-delay:.08s}
+.vote-heart-burst span:nth-child(5){--x:14px;--y:-44px;animation-delay:.1s}
+@keyframes heartFloat{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.55);
+  }
+  18%{opacity:1}
+  100%{
+    opacity:0;
+    transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.05);
+  }
+}
+.vote-floating.vote-count-pop{
+  animation:countPop .5s cubic-bezier(.2,.9,.2,1);
+}
+@keyframes countPop{
+  0%{transform:scale(1)}
+  40%{transform:scale(1.12)}
+  75%{transform:scale(.97)}
+  100%{transform:scale(1)}
+}
+#voteFloatingCount.count-flip{
+  display:inline-block;
+  animation:countFlip .42s ease;
+}
+@keyframes countFlip{
+  0%{transform:translateY(0);opacity:1}
+  45%{transform:translateY(-6px);opacity:.15}
+  55%{transform:translateY(6px);opacity:.15}
+  100%{transform:translateY(0);opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .vote-btn.vote-pop,
+  .vote-floating.vote-count-pop,
+  #voteFloatingCount.count-flip,
+  .vote-heart-burst span{
+    animation:none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1208,6 +1282,38 @@ async function loadVotes(){
   }
 }
 
+
+function animateVoteButton(btn){
+  btn.classList.remove("vote-pop");
+  void btn.offsetWidth;
+  btn.classList.add("vote-pop");
+
+  const burst=document.createElement("span");
+  burst.className="vote-heart-burst";
+  burst.setAttribute("aria-hidden","true");
+  burst.innerHTML="<span>♥</span><span>♥</span><span>♥</span><span>♥</span><span>♥</span>";
+  btn.appendChild(burst);
+  window.setTimeout(()=>burst.remove(),800);
+  window.setTimeout(()=>btn.classList.remove("vote-pop"),700);
+}
+
+function animateVoteCounter(){
+  const floating=document.getElementById("voteFloating");
+  const count=document.getElementById("voteFloatingCount");
+  if(floating){
+    floating.classList.remove("vote-count-pop");
+    void floating.offsetWidth;
+    floating.classList.add("vote-count-pop");
+    window.setTimeout(()=>floating.classList.remove("vote-count-pop"),650);
+  }
+  if(count){
+    count.classList.remove("count-flip");
+    void count.offsetWidth;
+    count.classList.add("count-flip");
+    window.setTimeout(()=>count.classList.remove("count-flip"),550);
+  }
+}
+
 async function castVote(title, btn){
   if(VOTES_REMAINING<=0 || TODAY_VOTED_SONGS.has(title)) return;
   btn.disabled=true;
@@ -1216,11 +1322,13 @@ async function castVote(title, btn){
   try{
     const data=await voteApi("POST",{song_title:title,voter_id:VOTER_ID});
     if(data.ok){
+      animateVoteButton(btn);
       btn.classList.add("voted");
       btn.textContent="♥ 投票済み";
       btn.disabled=true;
       if(msg) msg.textContent=`「${title}」に投票しました ♥`;
       updateVoteState(data.today);
+      animateVoteCounter();
       renderFanRanking(data.ranking||[]);
       trackEvent("fan_vote",{song_title:title});
     }else{
