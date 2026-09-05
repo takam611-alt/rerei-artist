@@ -471,7 +471,7 @@ img{display:block;max-width:100%}
   padding-top:0;
 }
 .song{
-  display:grid;grid-template-columns:42px 1fr auto;
+  display:grid;grid-template-columns:42px 1fr auto auto;
   gap:16px;align-items:center;
   min-height:76px;border-bottom:1px solid rgba(16,16,16,.12);
   padding:0 6px;cursor:pointer;transition:.18s ease;
@@ -597,6 +597,13 @@ img{display:block;max-width:100%}
 .vote-btn:disabled:not(.voted){
   opacity:.45;
 }
+.vote-btn.voted,
+.vote-btn.voted:disabled{
+  background:#101010 !important;
+  color:#ffffff !important;
+  border-color:#101010 !important;
+  opacity:1 !important;
+}
 .vote-message{
   min-height:18px;
   margin-top:8px;
@@ -621,7 +628,19 @@ img{display:block;max-width:100%}
   white-space:nowrap;
 }
 .song-sub{
-  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+}
+.song-copy{
+  min-width:0;
+  width:100%;
 }
 .arrow{font-size:24px;color:#87796e}
 .spotify-player-row{
@@ -752,7 +771,7 @@ footer{
   .today-shell{padding:22px 16px}
   .today-actions{display:grid;grid-template-columns:1fr}
   .today-btn{width:100%}
-  .song{grid-template-columns:38px 1fr auto;gap:10px;min-height:72px}
+  .song{grid-template-columns:38px 1fr auto auto;gap:8px;min-height:72px}
   .disco-list-wrap.collapsed{max-height:720px}
   .disco-list-wrap.collapsed::after{height:135px}
   .more-songs-wrap{margin-top:-48px}
@@ -1137,6 +1156,9 @@ async function castVote(title, btn){
   try{
     const data=await voteApi("POST",{song_title:title,voter_id:VOTER_ID});
     if(data.ok){
+      btn.classList.add("voted");
+      btn.textContent="♥ 投票済み";
+      btn.disabled=true;
       if(msg) msg.textContent=`「${title}」に投票しました ♥`;
       updateVoteState(data.today);
       renderFanRanking(data.ranking||[]);
@@ -1249,9 +1271,9 @@ function render(q=""){
         <div class="song-title">${esc(x[0])}${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}${FAN_PICK_SONGS.has(x[0])?'<span class="fan-pick-badge">♥ FAN PICK</span>':""}</div>
         <div class="song-sub">
           <span class="spotify-pill">▶ 試聴</span>
-          <button class="vote-btn ${TODAY_VOTED_SONGS.has(x[0])?"voted":""}" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票する"}</button>
         </div>
       </div>
+      <button class="vote-btn ${TODAY_VOTED_SONGS.has(x[0])?"voted":""}" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票する"}</button>
       <div class="arrow">›</div>
     </div>
   `).join("")||'<div class="about">該当する楽曲がありません。</div>';
