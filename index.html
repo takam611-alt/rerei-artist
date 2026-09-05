@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="ja">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F8NKSNGP7D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F8NKSNGP7D');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ede7de">
@@ -773,6 +780,12 @@ const SONGS = [
 ["もう片方の未来","https://distrokid.com/hyperfollow/re43/FjKMYtWclTy"]
 ];
 const SPOTIFY_ALBUMS={"何度でも君を":"5G9Btmq2yfkwHMnJ685ioW","またねの続き":"6zj4Xa12WFn2qcqerPznMl","もしも今日が":"44FB7gj3C36lhB3ckyXA7X","最後の花火":"0ctwb5WJ1AmYLUQ8tiMPEv","好きって":"2tuTbdXO04aeHdSZNWQu2u","声だけで":"2EqIvOMYkHorLuQ5MmydoV","幸せってたぶん":"08EWAWsKCDYC9gNQUZyiW1","明日も君と":"0nxDZAMd2q7EFk2YzsJtaY","少しだけ未来へ":"3dZQ4MqVuCWtaChuBvNltE","大切なもの":"1IX6R9sUdGSYG843dGXdMH","僕の弱いところ":"1yPzhqQ8b5IK7qjjFR9CYk","涙の先に":"46YdrGSJIcQZhhnMeV8Ro4","君といる理由":"7AfUiEym9X93OhVvTnWZDf","何度でも恋をして":"1TzdRM9j0cLsxXRdNbxaky","君のとなり":"4dWIxpmamCLiREIDxLlLhk","ずっと、君と":"4WcozK1YEcn7BsFSenxIlr","ありがとうを君へ":"16adhKVq6rrL3ypxpwa0bC","君がくれた毎日":"2LLs21UHA6D3hr31biWMcY","君の好きなところ":"7Ew4cA4ChQfsEar2ZDerG9","83億分の君":"4szErgKFLcHAaQMqrV0ToC","見えない糸":"4E8jqgd7YM1Fea8hVw2gZM","ふたりごと":"2uJyhJ4W3xgjgFonOSsFM8","会いたい理由":"5YQ0kdcFn6UpDoMGXZDvAQ","未来への下書き":"2T90lIful2LperPYKFYZia","ふたりの水平線":"3SeoXxIfTmjq0jA3aO4RQF","白紙に咲く花":"0B4A9BpNEzoHGcRYSoyMRb","空白の花言葉":"1Yi3DCVmpW71zi91RqCfQb","はじまりの栞":"6YyCdwwq23kB336M4S4yw0","花の栞":"4aYuZ31wwbJ9lZhQWsPr0P","花束の続きを":"1BC4qXbme41QZmaaSAxrpU","今日の続きを":"0Mo9AbKf2KpEUyVMbbURQj","最後の欠片":"3edlgkCqxBrqSlYonFJjwZ","消せないしおり":"4FhSTuGkzIYES6jIvZwatJ","心のものさし":"4YOG0zvPksUPoglUvvvbJL","ふたりの余白":"1GT4ccmanlIjX0mE4qCHI9","離れても":"0P6dPj3wgR5kau1y10NY93","叶わない恋":"6qjdhrJKQDg6hR4AS9dEal","最後に笑った君へ":"3hMTQNiEkwIDFe4Kndtb6i","静かな約束":"08TL2cZMQMEjhBinmIPBw5","それでも明日は来る。":"6CTbt4QmEs8idYVt3LZkhX","立て":"4jTZQa23lMBtZ08M1yrCP0","君がいた季節":"78wGbEVrYJJOAJdQvvJ1xd","風のあと":"682pZuGtjjiJAZ1lNp3TiO","今日を越えて":"2kfh5p6QoXMUTTUwZYZg5y","ごめんねと言えなくて":"1mZxwQm6SkuFkiA8bMuJoD","わがままでもいい":"7nz1mHpenUlkc9kjZAZiNi","今日だけは泣こう":"5A4PNlJyncikohxhdfpsmH","同じ気持ちでいられたら":"3LGGi6sKlwyS25AnSbHEKP","君がいたから":"4L9ouxwEguba4mJ2fPWCVm","君がいた世界":"0WY7jzvJq82ERZJo971Q7N","笑顔の理由":"0bYGwx1UIJ2VCkjHw1CyaX","弱音":"0uBczduxHPqURqfty9zEXq","助けてと言えなくて":"6D1Isbooz2VgzDDEyuNTnd","君の耳元で":"5frFUwS7Wer4JD3jovRBAi","君の歩幅で。":"53qK7og6fWaYEjXEir9FZS","君がいる温度で":"6bL8p7QJhOaFZErzRBcXJt","泣いていい。":"4JAopTXU3aqRL6bXEKWT0N","もう片方の未来":"4PMpH0JR4QY7ZfBYARcqLQ","声で繋いで":"2Xf7faA3lYnntuGHHSkvj0","その先もずっと":"7dJJjX1T84UURqQiEhakyO","キミだけに":"7F0T6tYDWJ6p5VZ02yYKL1","未来への手紙":"5WNDO7ygzuF5kVnLorUAgS","窓の向こう":"3bAvTgycmOzQ0JEBtipfc3"};
+function trackEvent(name, params={}){
+  if(typeof gtag==="function"){
+    gtag("event", name, params);
+  }
+}
+
 const grid=document.getElementById("songGrid"),
       search=document.getElementById("songSearch"),
       count=document.getElementById("trackCount"),
@@ -836,6 +849,11 @@ function toggleSpotify(card){
   }
   if(existing) existing.remove();
 
+  trackEvent("song_preview",{
+    song_title:title,
+    spotify_album_id:spotifyId
+  });
+
   const row=document.createElement("div");
   row.className="spotify-player-row open";
   row.dataset.spotify=spotifyId;
@@ -858,11 +876,37 @@ function toggleSpotify(card){
 search.addEventListener("input",e=>render(e.target.value));
 moreSongsBtn.addEventListener("click",()=>{
   showAllSongs=!showAllSongs;
+  trackEvent(showAllSongs?"more_songs_open":"more_songs_close");
   render(search.value);
   if(!showAllSongs){
     document.getElementById("discography").scrollIntoView({behavior:"smooth",block:"start"});
   }
 });
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a");
+  if(!a) return;
+  const href=a.getAttribute("href")||"";
+  const label=(a.textContent||"").trim();
+
+  if(href.includes("spotify.com")){
+    trackEvent("spotify_click",{link_text:label,link_url:href});
+  }else if(href.includes("distrokid.com/hyperfollow")){
+    trackEvent("distribution_click",{link_text:label,link_url:href});
+  }else if(href.includes("amazon.jp/hz/wishlist")){
+    trackEvent("support_click",{link_text:label,link_url:href});
+  }else if(href.includes("instagram.com")){
+    trackEvent("instagram_click",{link_text:label,link_url:href});
+  }else if(href.includes("tiktok.com")){
+    trackEvent("tiktok_click",{link_text:label,link_url:href});
+  }else if(href.includes("youtube.com")||href.includes("youtu.be")){
+    trackEvent("youtube_click",{link_text:label,link_url:href});
+  }else if(href.includes("music.apple.com")){
+    trackEvent("apple_music_click",{link_text:label,link_url:href});
+  }else if(href.includes("music.amazon.co.jp")){
+    trackEvent("amazon_music_click",{link_text:label,link_url:href});
+  }
+});
+
 render();
 </script>
 </body>
