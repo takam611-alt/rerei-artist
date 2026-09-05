@@ -789,6 +789,39 @@ footer{
   }
 }
 .support-copy{max-width:720px;margin:0 auto 22px;text-align:left;line-height:1.9;}
+
+.vote-floating{
+  position:fixed;
+  right:14px;
+  bottom:22px;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(16,16,16,.94);
+  color:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+  font-family:Arial,sans-serif;
+  font-size:12px;
+  line-height:1;
+  letter-spacing:.03em;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.vote-floating.show{display:flex}
+.vote-floating .heart{font-size:14px}
+.vote-floating strong{font-size:13px}
+@media(max-width:640px){
+  .vote-floating{
+    right:12px;
+    bottom:18px;
+    padding:10px 13px;
+    font-size:11px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1138,6 +1171,18 @@ function updateVoteState(today){
       ? `本日はあと ${VOTES_REMAINING} 票投票できます。`
       : "本日の3票を使い切りました。また明日投票できます。";
   }
+
+  const floating=document.getElementById("voteFloating");
+  const floatingCount=document.getElementById("voteFloatingCount");
+  if(floating && floatingCount){
+    floatingCount.textContent=String(VOTES_REMAINING);
+    if(VOTES_REMAINING>0){
+      floating.classList.add("show");
+    }else{
+      floating.classList.remove("show");
+    }
+  }
+
   render(search.value);
 }
 
@@ -1158,6 +1203,8 @@ async function loadVotes(){
   }catch(e){
     const status=document.getElementById("voteStatus");
     if(status) status.textContent="投票情報を読み込めませんでした。";
+    const floating=document.getElementById("voteFloating");
+    if(floating) floating.classList.remove("show");
   }
 }
 
@@ -1383,5 +1430,11 @@ document.addEventListener("click",e=>{
 render();
 loadVotes();
 </script>
+
+<div id="voteFloating" class="vote-floating" aria-live="polite">
+  <span class="heart">♡</span>
+  <span>今日はあと <strong id="voteFloatingCount">3</strong> 票</span>
+</div>
+
 </body>
 </html>
