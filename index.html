@@ -490,6 +490,106 @@ img{display:block;max-width:100%}
   letter-spacing:.08em;
   color:var(--muted);
 }
+
+.fan-pick-badge{
+  display:inline-flex;
+  align-items:center;
+  margin-left:6px;
+  padding:3px 7px 2px;
+  border:1px solid rgba(119,45,61,.28);
+  border-radius:999px;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.06em;
+  vertical-align:middle;
+  color:#7b3544;
+  background:#f3e3e5;
+  white-space:nowrap;
+}
+.vote-overview{
+  margin:0 0 22px;
+  padding:18px;
+  border:1px solid rgba(16,16,16,.12);
+  background:#f1eadf;
+}
+.vote-overview-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:14px;
+}
+.vote-overview h3{
+  margin:0;
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:clamp(26px,4vw,42px);
+  font-weight:400;
+  letter-spacing:-.04em;
+}
+.vote-rule{
+  font-size:10px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  text-align:right;
+}
+.fan-ranking{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+.fan-rank-item{
+  min-height:88px;
+  padding:12px;
+  border:1px solid rgba(16,16,16,.12);
+  background:var(--paper);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.fan-rank-no{
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.12em;
+}
+.fan-rank-title{
+  font-family:Georgia,"Yu Mincho",serif;
+  font-size:15px;
+  line-height:1.35;
+}
+.fan-rank-votes{
+  margin-top:8px;
+  font-size:10px;
+  color:var(--muted);
+}
+.vote-status{
+  margin-top:12px;
+  font-size:11px;
+  color:var(--muted);
+}
+.vote-btn{
+  appearance:none;
+  border:0;
+  background:transparent;
+  padding:0;
+  margin-left:12px;
+  color:#7b3544;
+  font:inherit;
+  font-size:10px;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+.vote-btn:disabled{
+  cursor:default;
+  opacity:.55;
+}
+.vote-message{
+  min-height:18px;
+  margin-top:8px;
+  font-size:10px;
+  color:#7b3544;
+}
+
 .pick-badge{
   display:inline-flex;
   align-items:center;
@@ -622,6 +722,11 @@ footer{
   .pickup-shell,.listen-wrap,.discography-shell,.support-shell,.contact-shell{padding:14px}
   .about-shell{padding:22px 14px 14px}
 
+  .vote-overview{padding:14px}
+  .vote-overview-head{display:block}
+  .vote-rule{text-align:left;margin-top:8px}
+  .fan-ranking{grid-template-columns:1fr}
+  .fan-rank-item{min-height:0}
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .today-shell{padding:22px 16px}
@@ -778,6 +883,17 @@ footer{
   <div class="wrap">
     <div class="section-head"><strong>03 / Songs</strong><span id="trackCount"></span></div>
     <div class="discography-shell">
+      <div class="vote-overview">
+        <div class="vote-overview-head">
+          <h3>みんなのPICK</h3>
+          <div class="vote-rule">今月の投票 TOP5 ／ 1日3票まで</div>
+        </div>
+        <div id="fanRanking" class="fan-ranking">
+          <div class="fan-rank-item"><span class="fan-rank-no">NOW</span><span class="fan-rank-title">集計中...</span></div>
+        </div>
+        <div id="voteStatus" class="vote-status">本日の残り投票数を確認しています...</div>
+        <div id="voteMessage" class="vote-message"></div>
+      </div>
       <div class="disco-top">
         <div>
           <h2 class="disco-title">Discography</h2>
@@ -907,6 +1023,116 @@ const SONGS = [
 const SPOTIFY_ALBUMS={"何度でも君を":"5G9Btmq2yfkwHMnJ685ioW","またねの続き":"6zj4Xa12WFn2qcqerPznMl","もしも今日が":"44FB7gj3C36lhB3ckyXA7X","最後の花火":"0ctwb5WJ1AmYLUQ8tiMPEv","好きって":"2tuTbdXO04aeHdSZNWQu2u","声だけで":"2EqIvOMYkHorLuQ5MmydoV","幸せってたぶん":"08EWAWsKCDYC9gNQUZyiW1","明日も君と":"0nxDZAMd2q7EFk2YzsJtaY","少しだけ未来へ":"3dZQ4MqVuCWtaChuBvNltE","大切なもの":"1IX6R9sUdGSYG843dGXdMH","僕の弱いところ":"1yPzhqQ8b5IK7qjjFR9CYk","涙の先に":"46YdrGSJIcQZhhnMeV8Ro4","君といる理由":"7AfUiEym9X93OhVvTnWZDf","何度でも恋をして":"1TzdRM9j0cLsxXRdNbxaky","君のとなり":"4dWIxpmamCLiREIDxLlLhk","ずっと、君と":"4WcozK1YEcn7BsFSenxIlr","ありがとうを君へ":"16adhKVq6rrL3ypxpwa0bC","君がくれた毎日":"2LLs21UHA6D3hr31biWMcY","君の好きなところ":"7Ew4cA4ChQfsEar2ZDerG9","83億分の君":"4szErgKFLcHAaQMqrV0ToC","見えない糸":"4E8jqgd7YM1Fea8hVw2gZM","ふたりごと":"2uJyhJ4W3xgjgFonOSsFM8","会いたい理由":"5YQ0kdcFn6UpDoMGXZDvAQ","未来への下書き":"2T90lIful2LperPYKFYZia","ふたりの水平線":"3SeoXxIfTmjq0jA3aO4RQF","白紙に咲く花":"0B4A9BpNEzoHGcRYSoyMRb","空白の花言葉":"1Yi3DCVmpW71zi91RqCfQb","はじまりの栞":"6YyCdwwq23kB336M4S4yw0","花の栞":"4aYuZ31wwbJ9lZhQWsPr0P","花束の続きを":"1BC4qXbme41QZmaaSAxrpU","今日の続きを":"0Mo9AbKf2KpEUyVMbbURQj","最後の欠片":"3edlgkCqxBrqSlYonFJjwZ","消せないしおり":"4FhSTuGkzIYES6jIvZwatJ","心のものさし":"4YOG0zvPksUPoglUvvvbJL","ふたりの余白":"1GT4ccmanlIjX0mE4qCHI9","離れても":"0P6dPj3wgR5kau1y10NY93","叶わない恋":"6qjdhrJKQDg6hR4AS9dEal","最後に笑った君へ":"3hMTQNiEkwIDFe4Kndtb6i","静かな約束":"08TL2cZMQMEjhBinmIPBw5","それでも明日は来る。":"6CTbt4QmEs8idYVt3LZkhX","立て":"4jTZQa23lMBtZ08M1yrCP0","君がいた季節":"78wGbEVrYJJOAJdQvvJ1xd","風のあと":"682pZuGtjjiJAZ1lNp3TiO","今日を越えて":"2kfh5p6QoXMUTTUwZYZg5y","ごめんねと言えなくて":"1mZxwQm6SkuFkiA8bMuJoD","わがままでもいい":"7nz1mHpenUlkc9kjZAZiNi","今日だけは泣こう":"5A4PNlJyncikohxhdfpsmH","同じ気持ちでいられたら":"3LGGi6sKlwyS25AnSbHEKP","君がいたから":"4L9ouxwEguba4mJ2fPWCVm","君がいた世界":"0WY7jzvJq82ERZJo971Q7N","笑顔の理由":"0bYGwx1UIJ2VCkjHw1CyaX","弱音":"0uBczduxHPqURqfty9zEXq","助けてと言えなくて":"6D1Isbooz2VgzDDEyuNTnd","君の耳元で":"5frFUwS7Wer4JD3jovRBAi","君の歩幅で。":"53qK7og6fWaYEjXEir9FZS","君がいる温度で":"6bL8p7QJhOaFZErzRBcXJt","泣いていい。":"4JAopTXU3aqRL6bXEKWT0N","もう片方の未来":"4PMpH0JR4QY7ZfBYARcqLQ","声で繋いで":"2Xf7faA3lYnntuGHHSkvj0","その先もずっと":"7dJJjX1T84UURqQiEhakyO","キミだけに":"7F0T6tYDWJ6p5VZ02yYKL1","未来への手紙":"5WNDO7ygzuF5kVnLorUAgS","窓の向こう":"3bAvTgycmOzQ0JEBtipfc3"};
 const SONG_MESSAGES={"声で繋いで":"離れていても、声があれば少し近くなれる。","その先もずっと":"今日の続きを、これから先も一緒に。","キミだけに":"たくさんの人の中で、伝えたいのは君だけ。","未来への手紙":"今の僕から、まだ見ぬ未来の自分へ。","窓の向こう":"まだ見えない景色にも、きっと続きがある。","何度でも君を":"記憶を失っても、きっとまた君を好きになる。","またねの続き":"さよならじゃなくて、その先に続く約束を。","もしも今日が":"今日が最後なら、きっと一番伝えたい言葉がある。","最後の花火":"あの夏の終わりに、消えずに残った想い。","好きって":"「好き」の意味を、君と過ごす中で知っていく。","声だけで":"顔が見えなくても、心はちゃんと届いていく。","幸せってたぶん":"幸せは、特別じゃない日々の中にある。","明日も君と":"今日だけじゃなく、明日もその先も隣で。","少しだけ未来へ":"不安があっても、少しずつ前へ進んでいける。","大切なもの":"失いかけて初めて気づくものがある。","僕の弱いところ":"隠したい弱さも、君の前では少しだけ言える。","涙の先に":"泣いたあとにしか見えない光もある。","君といる理由":"理由なんてなくても、そばにいたいと思えた。","何度でも恋をして":"何回でも、君に恋をし直せる気がする。","君のとなり":"いちばん落ち着く場所は、君のとなりだった。","ずっと、君と":"ありふれた願いだけど、それがいちばん大切だった。","ありがとうを君へ":"言葉にしきれない感謝を、ちゃんと君へ。","君がくれた毎日":"何気ない日々を、特別にしてくれたのは君だった。","君の好きなところ":"数えきれないくらい、好きな理由が増えていく。","83億分の君":"広い世界の中で、出会えた奇跡を信じたい。","見えない糸":"目には見えなくても、確かに繋がっているものがある。","ふたりごと":"ふたりだけの言葉が、今日も心をあたためる。","会いたい理由":"会いたい気持ちに、きっと正解なんていらない。","未来への下書き":"まだ未完成でも、未来は少しずつ描いていける。","ふたりの水平線":"違う景色を見ていても、同じ先を信じていたい。","白紙に咲く花":"何もない場所からでも、想いはちゃんと花開く。","空白の花言葉":"言葉にできない想いほど、深く残ることがある。","はじまりの栞":"新しい物語は、ほんの小さなきっかけから始まる。","花の栞":"忘れたくない瞬間に、そっとしおりを挟むように。","花束の続きを":"渡した想いの、その先までちゃんと見届けたい。","今日の続きを":"この一日が、明日へやさしく続いていくように。","最後の欠片":"それでも残ってしまう、消しきれない気持ちがある。","消せないしおり":"心のページに挟まれたまま、消えない記憶。","心のものさし":"比べるためじゃなく、自分の気持ちを測るために。","ふたりの余白":"言葉がなくても埋まる距離がある。","離れても":"距離では消えない想いも、たしかにある。","叶わない恋":"届かないと分かっていても、好きは止められない。","最後に笑った君へ":"最後の笑顔が、今も心の中でほどけない。","静かな約束":"大きな言葉じゃなくても、守りたい約束がある。","それでも明日は来る。":"立ち止まった夜の先にも、ちゃんと朝は来る。","立て":"もう一度、自分の足で前を向くために。","君がいた季節":"あの季節が特別だったのは、君がいたから。","風のあと":"通り過ぎた想いが、静かに心を揺らしていく。","今日を越えて":"苦しい今日の先にも、きっと意味がある。","ごめんねと言えなくて":"言えなかったひと言ほど、心に残り続ける。","わがままでもいい":"たまには自分の気持ちを、優先してもいい。","今日だけは泣こう":"無理に笑わなくていい日があってもいい。","同じ気持ちでいられたら":"変わっていく日々の中でも、想いだけは同じままで。","君がいたから":"君がいたから、今の自分まで来られた。","君がいた世界":"君を知った日から、世界の見え方が変わった。","笑顔の理由":"ちゃんと笑える日は、誰かの優しさでできている。","弱音":"今日は少しくらい、弱いままでいてもいい。","助けてと言えなくて":"そのひと言が言えない夜ほど、ひとりで抱え込んでしまう。","君の耳元で":"誰にも聞こえない距離で、そっと想いを伝えたい。","君の歩幅で。":"急がなくていい、君の歩幅で進めばいい。","君がいる温度で":"そばにいるだけで、心の温度が少しやわらぐ。","泣いていい。":"強がれない日は、ちゃんと泣いても大丈夫。","もう片方の未来":"選ばなかったはずの未来にも、きっと意味があった。"};
 const PICK_SONGS=new Set(["その先もずっと", "何度でも君を", "好きって", "声だけで", "幸せってたぶん", "少しだけ未来へ", "大切なもの", "君といる理由", "ずっと、君と", "ありがとうを君へ", "君がくれた毎日", "君の好きなところ", "83億分の君", "見えない糸", "花束の続きを", "静かな約束", "君がいたから", "弱音", "君の歩幅で。", "君がいる温度で", "もう片方の未来"]);
+const VOTE_API="https://qihrversggpkykurdbqu.supabase.co/functions/v1/rerei-vote";
+const VOTE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpaHJ2ZXJzZ2dwa3lrdXJkYnF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MjU2NDUsImV4cCI6MjEwNDAwMTY0NX0.pWPp8BY2g4ZpVC7GULI9AJNWwkGmcArUY1NzXA1IO8o";
+let FAN_PICK_SONGS=new Set();
+let TODAY_VOTED_SONGS=new Set();
+let VOTES_REMAINING=3;
+
+function getVoterId(){
+  let id=localStorage.getItem("rerei_voter_id");
+  if(!id){
+    const raw=crypto.getRandomValues(new Uint32Array(4));
+    id="rr_"+Array.from(raw).map(n=>n.toString(36)).join("");
+    localStorage.setItem("rerei_voter_id",id);
+  }
+  return id;
+}
+const VOTER_ID=getVoterId();
+
+async function voteApi(method="GET", body=null){
+  const url=method==="GET"?`${VOTE_API}?voter_id=${encodeURIComponent(VOTER_ID)}`:VOTE_API;
+  const res=await fetch(url,{
+    method,
+    headers:{
+      "Authorization":`Bearer ${VOTE_ANON_KEY}`,
+      "apikey":VOTE_ANON_KEY,
+      "Content-Type":"application/json"
+    },
+    body:body?JSON.stringify(body):undefined
+  });
+  const data=await res.json().catch(()=>({ok:false,error:"invalid_response"}));
+  if(!res.ok && !data.message) data.message="投票処理でエラーが発生しました。";
+  return data;
+}
+
+function renderFanRanking(ranking=[]){
+  const box=document.getElementById("fanRanking");
+  if(!box) return;
+  FAN_PICK_SONGS=new Set(ranking.map(x=>x.song_title));
+  if(!ranking.length){
+    box.innerHTML='<div class="fan-rank-item"><span class="fan-rank-no">NEW</span><span class="fan-rank-title">まだ投票はありません</span><span class="fan-rank-votes">最初の1票をどうぞ</span></div>';
+  }else{
+    box.innerHTML=ranking.map((x,i)=>`
+      <div class="fan-rank-item">
+        <span class="fan-rank-no">${String(i+1).padStart(2,"0")} / TOP5</span>
+        <span class="fan-rank-title">${esc(x.song_title)}</span>
+        <span class="fan-rank-votes">♥ ${x.votes}票</span>
+      </div>
+    `).join("");
+  }
+  render(search.value);
+  refreshTodaySongBadge();
+}
+
+function updateVoteState(today){
+  if(!today) return;
+  VOTES_REMAINING=Number(today.remaining ?? 3);
+  TODAY_VOTED_SONGS=new Set(today.voted_songs || []);
+  const status=document.getElementById("voteStatus");
+  if(status){
+    status.textContent=VOTES_REMAINING>0
+      ? `本日はあと ${VOTES_REMAINING} 票投票できます。`
+      : "本日の3票を使い切りました。また明日投票できます。";
+  }
+  render(search.value);
+}
+
+function refreshTodaySongBadge(){
+  if(!todaySong) return;
+  const title=todaySong[0];
+  todayTitle.innerHTML=
+    esc(title)+
+    (PICK_SONGS.has(title)?'<span class="pick-badge">★ PICK</span>':"")+
+    (FAN_PICK_SONGS.has(title)?'<span class="fan-pick-badge">♥ FAN PICK</span>':"");
+}
+
+async function loadVotes(){
+  try{
+    const data=await voteApi("GET");
+    if(!data.ok) throw new Error(data.error||"vote_load_failed");
+    updateVoteState(data.today);
+    renderFanRanking(data.ranking||[]);
+  }catch(e){
+    const status=document.getElementById("voteStatus");
+    if(status) status.textContent="投票情報を読み込めませんでした。";
+  }
+}
+
+async function castVote(title, btn){
+  if(VOTES_REMAINING<=0 || TODAY_VOTED_SONGS.has(title)) return;
+  btn.disabled=true;
+  const msg=document.getElementById("voteMessage");
+  if(msg) msg.textContent="投票しています...";
+  try{
+    const data=await voteApi("POST",{song_title:title,voter_id:VOTER_ID});
+    if(data.ok){
+      if(msg) msg.textContent=`「${title}」に投票しました ♥`;
+      updateVoteState(data.today);
+      renderFanRanking(data.ranking||[]);
+      trackEvent("fan_vote",{song_title:title});
+    }else{
+      if(msg) msg.textContent=data.message||"投票できませんでした。";
+      if(data.today) updateVoteState(data.today);
+    }
+  }catch(e){
+    if(msg) msg.textContent="通信に失敗しました。少し時間をおいてお試しください。";
+  }finally{
+    btn.disabled=false;
+  }
+}
+
+
 function trackEvent(name, params={}){
   if(typeof gtag==="function"){
     gtag("event", name, params);
@@ -925,7 +1151,10 @@ function pickTodaySong(excludeTitle=""){
   const pool=SONGS.filter(x=>x[0]!==excludeTitle);
   todaySong=pool[Math.floor(Math.random()*pool.length)];
   const title=todaySong[0];
-  todayTitle.innerHTML=esc(title)+(PICK_SONGS.has(title)?'<span class="pick-badge">★ PICK</span>':"");
+  todayTitle.innerHTML=
+    esc(title)+
+    (PICK_SONGS.has(title)?'<span class="pick-badge">★ PICK</span>':"")+
+    (FAN_PICK_SONGS.has(title)?'<span class="fan-pick-badge">♥ FAN PICK</span>':"");
   todayMessage.textContent=SONG_MESSAGES[title]||"今日はこの曲を。";
   todayPlayer.innerHTML="";
   todayPreviewBtn.textContent="▶ 試聴";
@@ -997,8 +1226,11 @@ function render(q=""){
          data-hyperfollow="${x[1]}">
       <div class="thumb"><span class="thumb-mark">Re:黎</span></div>
       <div class="song-copy">
-        <div class="song-title">${esc(x[0])}${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}</div>
-        <div class="song-sub"><span class="spotify-pill">▶ 試聴</span></div>
+        <div class="song-title">${esc(x[0])}${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}${FAN_PICK_SONGS.has(x[0])?'<span class="fan-pick-badge">♥ FAN PICK</span>':""}</div>
+        <div class="song-sub">
+          <span class="spotify-pill">▶ 試聴</span>
+          <button class="vote-btn" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票"}</button>
+        </div>
       </div>
       <div class="arrow">›</div>
     </div>
@@ -1010,6 +1242,15 @@ function render(q=""){
     card.addEventListener("keydown",e=>{
       if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}
     });
+  });
+
+  document.querySelectorAll(".vote-btn").forEach(btn=>{
+    btn.addEventListener("click",e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      castVote(btn.dataset.voteSong,btn);
+    });
+    btn.addEventListener("keydown",e=>e.stopPropagation());
   });
 }
 
@@ -1084,6 +1325,7 @@ document.addEventListener("click",e=>{
 });
 
 render();
+loadVotes();
 </script>
 </body>
 </html>
