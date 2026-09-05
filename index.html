@@ -832,8 +832,8 @@ footer{
 }
 @keyframes votePop{
   0%{transform:scale(1)}
-  38%{transform:scale(1.16)}
-  70%{transform:scale(.96)}
+  30%{transform:scale(1.24)}
+  62%{transform:scale(.93)}
   100%{transform:scale(1)}
 }
 .vote-heart-burst{
@@ -1322,14 +1322,36 @@ async function castVote(title, btn){
   try{
     const data=await voteApi("POST",{song_title:title,voter_id:VOTER_ID});
     if(data.ok){
-      animateVoteButton(btn);
       btn.classList.add("voted");
       btn.textContent="♥ 投票済み";
       btn.disabled=true;
+
+      animateVoteButton(btn);
+
       if(msg) msg.textContent=`「${title}」に投票しました ♥`;
-      updateVoteState(data.today);
+
+      VOTES_REMAINING=Number(data.today?.remaining ?? Math.max(0,VOTES_REMAINING-1));
+      TODAY_VOTED_SONGS=new Set(data.today?.voted_songs || [...TODAY_VOTED_SONGS,title]);
+
+      const floating=document.getElementById("voteFloating");
+      const floatingCount=document.getElementById("voteFloatingCount");
+      const status=document.getElementById("voteStatus");
+
+      if(floatingCount) floatingCount.textContent=String(VOTES_REMAINING);
+      if(status){
+        status.textContent=VOTES_REMAINING>0
+          ? `本日はあと ${VOTES_REMAINING} 票投票できます。`
+          : "本日の3票を使い切りました。また明日投票できます。";
+      }
+      if(floating && VOTES_REMAINING>0) floating.classList.add("show");
+
       animateVoteCounter();
-      renderFanRanking(data.ranking||[]);
+
+      window.setTimeout(()=>{
+        if(floating && VOTES_REMAINING<=0) floating.classList.remove("show");
+        renderFanRanking(data.ranking||[]);
+      },700);
+
       trackEvent("fan_vote",{song_title:title});
     }else{
       if(msg) msg.textContent=data.message||"投票できませんでした。";
