@@ -569,19 +569,33 @@ img{display:block;max-width:100%}
 }
 .vote-btn{
   appearance:none;
-  border:0;
-  background:transparent;
-  padding:0;
-  margin-left:12px;
-  color:#7b3544;
+  border:1px solid rgba(16,16,16,.28);
+  background:var(--paper);
+  color:var(--ink);
+  min-height:34px;
+  padding:0 12px;
+  margin-left:10px;
+  border-radius:999px;
   font:inherit;
-  font-size:10px;
-  letter-spacing:.06em;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.05em;
   cursor:pointer;
+  transition:.18s ease;
+}
+.vote-btn:hover{
+  background:#e9e1d6;
+}
+.vote-btn.voted{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
 }
 .vote-btn:disabled{
   cursor:default;
-  opacity:.55;
+}
+.vote-btn:disabled:not(.voted){
+  opacity:.45;
 }
 .vote-message{
   min-height:18px;
@@ -727,6 +741,12 @@ footer{
   .vote-rule{text-align:left;margin-top:8px}
   .fan-ranking{grid-template-columns:1fr}
   .fan-rank-item{min-height:0}
+  .vote-btn{
+    min-height:38px;
+    padding:0 14px;
+    font-size:12px;
+    margin-left:8px;
+  }
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
   .today-shell{padding:22px 16px}
@@ -1229,7 +1249,7 @@ function render(q=""){
         <div class="song-title">${esc(x[0])}${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}${FAN_PICK_SONGS.has(x[0])?'<span class="fan-pick-badge">♥ FAN PICK</span>':""}</div>
         <div class="song-sub">
           <span class="spotify-pill">▶ 試聴</span>
-          <button class="vote-btn" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票"}</button>
+          <button class="vote-btn ${TODAY_VOTED_SONGS.has(x[0])?"voted":""}" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票する"}</button>
         </div>
       </div>
       <div class="arrow">›</div>
