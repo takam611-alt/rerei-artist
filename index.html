@@ -897,52 +897,92 @@ footer{
 }
 
 
+
 .unlock-card{
   margin:0 0 22px;
-  padding:18px;
-  border:1px solid rgba(16,16,16,.12);
-  background:linear-gradient(180deg,#11131a 0%,#1b1d27 100%);
+  padding:20px;
+  border:1px solid rgba(255,255,255,.12);
   color:#fff;
   position:relative;
   overflow:hidden;
+  min-height:220px;
+  background:
+    radial-gradient(circle at 20% 22%,rgba(255,255,255,.10) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 72% 18%,rgba(255,255,255,.10) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 45% 36%,rgba(255,255,255,.08) 0 1px,transparent 1.5px),
+    linear-gradient(180deg,#080b13 0%,#101725 58%,#1b2330 100%);
+  transition:background .8s ease;
 }
-.unlock-card::after{
-  content:"";
+.unlock-sky{
   position:absolute;
-  inset:auto -20% -55% -20%;
-  height:140px;
-  background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%);
+  inset:0;
   pointer-events:none;
+  overflow:hidden;
+}
+.unlock-stars{
+  position:absolute;
+  inset:0;
+  opacity:.28;
+  transition:opacity .8s ease;
+  background-image:
+    radial-gradient(circle at 12% 24%,rgba(255,255,255,.9) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 29% 12%,rgba(255,255,255,.75) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 46% 28%,rgba(255,255,255,.85) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 67% 17%,rgba(255,255,255,.7) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 84% 30%,rgba(255,255,255,.85) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 22% 48%,rgba(255,255,255,.55) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 58% 42%,rgba(255,255,255,.7) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 76% 52%,rgba(255,255,255,.55) 0 1px,transparent 1.5px);
+}
+.unlock-dawn{
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  bottom:-34%;
+  height:64%;
+  opacity:0;
+  background:
+    radial-gradient(ellipse at center bottom,rgba(255,209,143,.92) 0%,rgba(255,170,104,.58) 28%,rgba(161,112,155,.2) 55%,transparent 76%);
+  transition:opacity .8s ease, transform .8s ease;
+  transform:translateY(18px);
+}
+.unlock-content{
+  position:relative;
+  z-index:2;
 }
 .unlock-kicker{
   font-size:10px;
   letter-spacing:.18em;
-  opacity:.65;
-  margin-bottom:8px;
+  opacity:.68;
+  margin-bottom:10px;
 }
 .unlock-title{
   font-family:Georgia,"Yu Mincho",serif;
-  font-size:clamp(24px,4vw,38px);
-  line-height:1.15;
-  margin:0 0 6px;
+  font-size:clamp(23px,3.7vw,36px);
+  line-height:1.24;
+  margin:0 0 8px;
+  max-width:100%;
+  text-wrap:balance;
 }
 .unlock-copy{
   font-size:12px;
   line-height:1.7;
-  opacity:.82;
-  margin-bottom:16px;
+  opacity:.84;
+  margin-bottom:18px;
 }
 .unlock-bar{
-  height:12px;
-  border:1px solid rgba(255,255,255,.22);
+  height:11px;
+  border:1px solid rgba(255,255,255,.25);
   background:rgba(255,255,255,.08);
   overflow:hidden;
+  border-radius:999px;
 }
 .unlock-fill{
   width:0%;
   height:100%;
-  background:linear-gradient(90deg,#c9a76c,#f6dfad);
+  background:linear-gradient(90deg,#b98f59,#f4d7a0);
   transition:width .8s cubic-bezier(.2,.8,.2,1);
+  border-radius:999px;
 }
 .unlock-meta{
   display:flex;
@@ -951,10 +991,10 @@ footer{
   gap:12px;
   margin-top:10px;
   font-size:11px;
-  opacity:.8;
+  opacity:.9;
 }
 .unlock-meta strong{
-  font-size:13px;
+  font-size:15px;
   color:#fff;
 }
 .unlock-card.bump{
@@ -969,6 +1009,7 @@ footer{
   position:absolute;
   right:18px;
   top:18px;
+  z-index:3;
   font-size:12px;
   opacity:0;
   transform:translateY(8px);
@@ -981,7 +1022,26 @@ footer{
   25%{opacity:1}
   100%{opacity:0;transform:translateY(-16px)}
 }
+@media(max-width:640px){
+  .unlock-card{
+    padding:18px 16px;
+    min-height:210px;
+  }
+  .unlock-title{
+    font-size:23px;
+    line-height:1.28;
+    max-width:18em;
+  }
+  .unlock-copy{
+    font-size:11px;
+  }
+}
+  100%{opacity:0;transform:translateY(-16px)}
+}
 
+
+.mobile-break{display:none}
+@media(max-width:640px){.mobile-break{display:block}}
 </style>
 </head>
 <body>
@@ -1120,16 +1180,22 @@ footer{
     <div class="section-head"><strong>03 / Songs</strong><span id="trackCount"></span></div>
     <div class="discography-shell">
       <div id="unlockCard" class="unlock-card">
-        <div id="unlockPlus" class="unlock-plus">+1</div>
-        <div class="unlock-kicker">NEW SONG UNLOCK</div>
-        <h3 class="unlock-title">みんなの投票で、新曲を解放。</h3>
-        <div id="unlockCopy" class="unlock-copy">1人1日1カウント。みんなでゲージを100%にしよう。</div>
-        <div class="unlock-bar" aria-label="新曲解放ゲージ">
-          <div id="unlockFill" class="unlock-fill"></div>
+        <div class="unlock-sky" aria-hidden="true">
+          <div id="unlockStars" class="unlock-stars"></div>
+          <div id="unlockDawn" class="unlock-dawn"></div>
         </div>
-        <div class="unlock-meta">
-          <span><strong id="unlockPercent">0%</strong></span>
-          <span id="unlockRemain">あと30カウント</span>
+        <div id="unlockPlus" class="unlock-plus">+1</div>
+        <div class="unlock-content">
+          <div class="unlock-kicker">NEW SONG UNLOCK</div>
+          <h3 class="unlock-title">みんなの投票で<br class="mobile-break">新曲を解放。</h3>
+          <div id="unlockCopy" class="unlock-copy">1人1日1カウント。みんなでゲージを100%にしよう。</div>
+          <div class="unlock-bar" aria-label="新曲解放ゲージ">
+            <div id="unlockFill" class="unlock-fill"></div>
+          </div>
+          <div class="unlock-meta">
+            <span><strong id="unlockPercent">0%</strong></span>
+            <span id="unlockRemain">あと30カウント</span>
+          </div>
         </div>
       </div>
       <div class="vote-overview">
@@ -1323,12 +1389,34 @@ function renderUnlock(unlock, animate=false){
   const pct=document.getElementById("unlockPercent");
   const remain=document.getElementById("unlockRemain");
   const copy=document.getElementById("unlockCopy");
-  if(fill) fill.style.width=`${unlock.percent||0}%`;
-  if(pct) pct.textContent=`${unlock.percent||0}%`;
+  const stars=document.getElementById("unlockStars");
+  const dawn=document.getElementById("unlockDawn");
+  const p=Math.max(0,Math.min(100,Number(unlock.percent||0)));
+
+  if(fill) fill.style.width=`${p}%`;
+  if(pct) pct.textContent=`${p}%`;
   if(remain) remain.textContent=unlock.unlocked ? "新曲解放！" : `あと${unlock.remaining}カウント`;
   if(copy) copy.textContent=unlock.unlocked
     ? "ゲージ達成。新曲が解放されました。"
     : "1人1日1カウント。みんなでゲージを100%にしよう。";
+
+  if(stars) stars.style.opacity=String(Math.min(.95,.25 + p/140));
+  if(dawn){
+    const dawnOpacity=p<45 ? 0 : Math.min(1,(p-45)/55);
+    dawn.style.opacity=String(dawnOpacity);
+    dawn.style.transform=`translateY(${18-(dawnOpacity*18)}px)`;
+  }
+
+  if(card){
+    if(p<35){
+      card.style.background="linear-gradient(180deg,#080b13 0%,#101725 58%,#1b2330 100%)";
+    }else if(p<70){
+      card.style.background="linear-gradient(180deg,#0d1120 0%,#20213a 58%,#3c2e48 100%)";
+    }else{
+      card.style.background="linear-gradient(180deg,#17192a 0%,#49354f 54%,#8b5a57 100%)";
+    }
+  }
+
   if(animate && card){
     card.classList.remove("bump");
     void card.offsetWidth;
