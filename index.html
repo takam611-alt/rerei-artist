@@ -1754,7 +1754,7 @@ function showVoteReward(){
   void box.offsetWidth;
   box.classList.add("show");
   clearTimeout(window.__voteRewardTimer);
-  window.__voteRewardTimer=setTimeout(()=>box.classList.remove("show"),3200);
+  window.__voteRewardTimer=setTimeout(()=>box.classList.remove("show"),5000);
 }
 function rankMoveBadge(item){
   if(item.is_new) return '<span class="rank-move new">NEW</span>';
