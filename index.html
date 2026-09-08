@@ -1175,6 +1175,28 @@ footer{
   opacity:.62;
 }
 
+
+.vote-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+}
+.vote-total{
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.05em;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.vote-total strong{
+  font-size:10px;
+  font-weight:700;
+  color:var(--ink);
+}
+
 </style>
 </head>
 <body>
@@ -1504,6 +1526,7 @@ const VOTE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 let FAN_PICK_SONGS=new Set();
 let TODAY_VOTED_SONGS=new Set();
 let VOTES_REMAINING=3;
+let ALL_TIME_VOTE_TOTALS={};
 
 function getVoterId(){
   let id=localStorage.getItem("rerei_voter_id");
@@ -1669,6 +1692,7 @@ async function loadVotes(){
   try{
     const data=await voteApi("GET");
     if(!data.ok) throw new Error(data.error||"vote_load_failed");
+    ALL_TIME_VOTE_TOTALS=data.totals||{};
     updateVoteState(data.today);
     renderUnlock(data.unlock,false);
     renderFanRanking(data.ranking||[]);
@@ -1744,6 +1768,7 @@ async function castVote(title, btn){
       if(floating && VOTES_REMAINING>0) floating.classList.add("show");
 
       animateVoteCounter();
+      ALL_TIME_VOTE_TOTALS=data.totals||ALL_TIME_VOTE_TOTALS;
       renderUnlock(data.unlock, !!data.unlock_incremented);
 
       window.setTimeout(()=>{
@@ -1863,7 +1888,10 @@ function render(q=""){
           ${PICK_SONGS.has(x[0])?'<span class="pick-badge">★ PICK</span>':""}
         </div>
       </div>
-      <button class="vote-btn ${TODAY_VOTED_SONGS.has(x[0])?"voted":""}" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票する"}</button>
+      <div class="vote-actions">
+        <button class="vote-btn ${TODAY_VOTED_SONGS.has(x[0])?"voted":""}" type="button" data-vote-song="${esc(x[0])}" ${TODAY_VOTED_SONGS.has(x[0])||VOTES_REMAINING<=0?"disabled":""}>${TODAY_VOTED_SONGS.has(x[0])?"♥ 投票済み":"♡ 投票する"}</button>
+        <div class="vote-total"><strong>${Number(ALL_TIME_VOTE_TOTALS[x[0]]||0).toLocaleString("ja-JP")}</strong> 票</div>
+      </div>
       <div class="arrow">›</div>
     </div>
   `).join("")||'<div class="about">該当する楽曲がありません。</div>';
