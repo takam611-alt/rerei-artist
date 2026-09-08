@@ -556,12 +556,12 @@ img{display:block;max-width:100%}
   border:1px solid rgba(16,16,16,.28);
   background:var(--paper);
   color:var(--ink);
-  min-height:34px;
-  padding:0 12px;
+  min-height:30px;
+  padding:0 10px;
   margin-left:0;
   border-radius:999px;
   font:inherit;
-  font-size:11px;
+  font-size:10px;
   font-weight:600;
   letter-spacing:.05em;
   cursor:pointer;
@@ -765,10 +765,20 @@ footer{
   .fan-ranking{grid-template-columns:1fr}
   .fan-rank-item{min-height:0}
   .vote-btn{
-    min-height:38px;
-    padding:0 14px;
-    font-size:12px;
-    margin-left:8px;
+    min-height:32px;
+    padding:0 10px;
+    font-size:10px;
+    margin-left:0;
+  }
+  .vote-actions{
+    min-width:78px;
+  }
+  .vote-total{
+    bottom:6px;
+    font-size:7px;
+  }
+  .vote-total strong{
+    font-size:8px;
   }
   .service-grid{grid-template-columns:1fr}
   .pickup-actions,.player-actions{grid-template-columns:1fr}
@@ -1177,26 +1187,29 @@ footer{
 
 
 .vote-actions{
+  position:relative;
+  align-self:stretch;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:4px;
-  padding-left:10px;
-  min-width:92px;
+  min-width:84px;
 }
 .vote-total{
+  position:absolute;
+  left:50%;
+  bottom:7px;
+  transform:translateX(-50%);
   width:100%;
   text-align:center;
   font-family:Arial,sans-serif;
-  font-size:8px;
+  font-size:7px;
   line-height:1;
   letter-spacing:.04em;
   color:var(--muted);
   white-space:nowrap;
 }
 .vote-total strong{
-  font-size:9px;
+  font-size:8px;
   font-weight:700;
   color:var(--ink);
 }
