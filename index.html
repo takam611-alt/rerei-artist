@@ -1214,6 +1214,22 @@ footer{
   color:var(--ink);
 }
 
+
+.vote-theme{margin:0 0 14px;padding:13px 14px;border:1px solid rgba(16,16,16,.12);background:rgba(255,255,255,.35)}
+.vote-theme-label{font-size:9px;letter-spacing:.16em;color:var(--muted);margin-bottom:5px}
+.vote-theme-text{font-family:Georgia,"Yu Mincho",serif;font-size:16px;line-height:1.5}
+.near-top5{display:none;margin:0 0 14px;padding:12px 14px;border:1px dashed rgba(16,16,16,.25);background:#f8f3eb;font-size:11px;line-height:1.6}
+.near-top5.show{display:block}
+.near-top5 strong{font-family:Georgia,"Yu Mincho",serif;font-size:15px}
+.rank-move{display:inline-flex;align-items:center;justify-content:center;min-width:34px;margin-left:6px;padding:2px 6px;border-radius:999px;font-family:Arial,sans-serif;font-size:8px;line-height:1.2;letter-spacing:.03em;background:rgba(16,16,16,.06);color:var(--muted);vertical-align:middle}
+.rank-move.up{color:#7a382f;background:rgba(122,56,47,.08)}
+.rank-move.down{color:#425b79;background:rgba(66,91,121,.08)}
+.rank-move.new{color:#6f5a2f;background:rgba(111,90,47,.1)}
+.vote-reward{position:fixed;left:50%;bottom:84px;z-index:10000;width:min(calc(100% - 28px),420px);padding:14px 16px;transform:translate(-50%,18px);opacity:0;pointer-events:none;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(16,16,16,.94);color:#fff;box-shadow:0 16px 40px rgba(0,0,0,.3);text-align:center;font-family:Georgia,"Yu Mincho",serif;font-size:14px;line-height:1.6;transition:.28s ease;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.vote-reward.show{opacity:1;transform:translate(-50%,0)}
+.vote-reward small{display:block;margin-bottom:4px;font-family:Arial,sans-serif;font-size:8px;letter-spacing:.16em;opacity:.6}
+@media(max-width:560px){.vote-theme{padding:11px 12px}.vote-theme-text{font-size:15px}.near-top5{padding:10px 12px}.vote-reward{bottom:76px;font-size:13px}}
+
 </style>
 </head>
 <body>
@@ -1389,6 +1405,11 @@ footer{
         </div>
       </div>
       <div class="vote-overview">
+        <div id="voteTheme" class="vote-theme">
+          <div class="vote-theme-label">TODAY'S VOTE THEME</div>
+          <div id="voteThemeText" class="vote-theme-text">今日のテーマを準備中...</div>
+        </div>
+        <div id="nearTop5" class="near-top5"></div>
         <div class="vote-overview-head">
           <h3>みんなのPICK</h3>
           <div class="vote-rule">今月の投票 TOP5 ／ 1日3票まで</div>
@@ -1544,6 +1565,7 @@ let FAN_PICK_SONGS=new Set();
 let TODAY_VOTED_SONGS=new Set();
 let VOTES_REMAINING=3;
 let ALL_TIME_VOTE_TOTALS={};
+let NEAR_TOP5=null;
 
 function getVoterId(){
   let id=localStorage.getItem("rerei_voter_id");
@@ -1653,6 +1675,108 @@ function renderUnlock(unlock, animate=false){
 }
 
 
+
+const VOTE_THEMES=[
+  "今日は「誰かに聴かせたい曲」に1票。",
+  "今日は「夜に聴きたい曲」に1票。",
+  "今日は「歌詞が好きな曲」に1票。",
+  "今日は「もう一度聴きたくなる曲」に1票。",
+  "今日は「今の自分に刺さる曲」に1票。",
+  "今日は「大切な人を思い出す曲」に1票。",
+  "今日は「背中を押してくれる曲」に1票。",
+  "今日は「いちばんRe:黎らしいと思う曲」に1票。"
+];
+const VOTE_REWARDS=[
+  "その1票、ちゃんと届いてます。",
+  "あなたの「好き」が、この曲を少し前に進めました。",
+  "今日も聴いてくれてありがとう。",
+  "選んでくれたその曲が、誰かの心にも届きますように。",
+  "その1票が、ランキングを動かすかもしれません。",
+  "今日の1票、ありがとうございます。",
+  "あなたが選んだ曲を、これからも大切に届けます。",
+  "好きでいてくれる人がいることが、いちばんの力です。",
+  "また聴きたいと思ってもらえたら、それだけでうれしいです。",
+  "あなたの投票で、新曲にもまた一歩近づきました。",
+  "この曲を選んでくれて、ありがとう。",
+  "その気持ちが、音楽の続きを作ってくれます。",
+  "あなたの1票が、この場所をあたたかくしています。",
+  "今日もRe:黎の曲に触れてくれてありがとう。",
+  "心に残った1曲を選んでくれてうれしいです。",
+  "その1票に、ちゃんと意味があります。",
+  "選んでくれたこと自体が、もううれしいです。",
+  "その曲との出会いを大切にしてくれてありがとう。",
+  "好きと思った気持ちを届けてくれてありがとう。",
+  "あなたの1票が、次の景色につながっていきます。",
+  "今日の投票、しっかり受け取りました。",
+  "その曲を好きでいてくれてありがとう。",
+  "あなたの気持ちが、曲にやさしく灯りました。",
+  "この1票で、また少し前へ進めます。",
+  "その選択が、きっと誰かの背中も押します。",
+  "一緒にランキングを動かしてくれてありがとう。",
+  "あなたの1票が、この場所の物語になります。",
+  "今日の「好き」、確かに受け取りました。",
+  "その曲を選んだ理由まで、なんだか伝わる気がします。",
+  "投票ありがとう。またふと思い出したら聴きにきてください。",
+  "あなたの1票が、音楽に小さな光をくれました。",
+  "その想いに応えられる曲を、これからも届けます。",
+  "選んでくれたことが、何よりもうれしいです。",
+  "その1票が、次の誰かの再生につながるかもしれません。",
+  "今日の投票も、大切に刻まれました。",
+  "聴いて、選んで、届けてくれてありがとう。",
+  "あなたの「これが好き」が、ちゃんと残っていきます。",
+  "その一歩で、新曲解放にも近づきました。",
+  "あなたの好きな1曲が、今日の主役です。",
+  "その曲に票を入れてくれて、ありがとう。",
+  "今日のランキング、少し揺れたかもしれません。",
+  "あなたの投票で、この曲がまた息をしました。",
+  "その気持ちが、音楽をもっと遠くへ連れていきます。",
+  "選んでくれた1曲、大切に受け取りました。",
+  "あなたの1票で、今日の景色が少し変わります。",
+  "その「好き」が、確かにここに残りました。",
+  "また来たくなる1曲でありますように。",
+  "あなたの投票が、誰かの新しい出会いになるかもしれません。",
+  "今日の1票も、静かに未来へつながっています。",
+  "その想いごと、音楽に重ねて受け取りました。"
+];
+function setupVoteTheme(){
+  const el=document.getElementById("voteThemeText");
+  if(!el) return;
+  const now=new Date();
+  const key=Number(`${now.getFullYear()}${now.getMonth()+1}${now.getDate()}`);
+  el.textContent=VOTE_THEMES[key % VOTE_THEMES.length];
+}
+function showVoteReward(){
+  const box=document.getElementById("voteReward");
+  const txt=document.getElementById("voteRewardText");
+  if(!box || !txt) return;
+  txt.textContent=VOTE_REWARDS[Math.floor(Math.random()*VOTE_REWARDS.length)];
+  box.classList.remove("show");
+  void box.offsetWidth;
+  box.classList.add("show");
+  clearTimeout(window.__voteRewardTimer);
+  window.__voteRewardTimer=setTimeout(()=>box.classList.remove("show"),3200);
+}
+function rankMoveBadge(item){
+  if(item.is_new) return '<span class="rank-move new">NEW</span>';
+  if(item.movement>0) return `<span class="rank-move up">↑${item.movement}</span>`;
+  if(item.movement<0) return `<span class="rank-move down">↓${Math.abs(item.movement)}</span>`;
+  return '<span class="rank-move">→</span>';
+}
+function renderNearTop5(near){
+  NEAR_TOP5=near||null;
+  const el=document.getElementById("nearTop5");
+  if(!el) return;
+  if(!near){
+    el.classList.remove("show");
+    el.innerHTML="";
+    return;
+  }
+  const needed=Math.max(1,Number(near.needed||1));
+  const phrase=needed===1 ? "あと1票でTOP5へ。" : `あと${needed}票でTOP5へ。`;
+  el.innerHTML=`<strong>${esc(near.song_title)}</strong><br>${phrase}あなたの1票で順位が動くかもしれません。`;
+  el.classList.add("show");
+}
+
 function renderFanRanking(ranking=[]){
   const box=document.getElementById("fanRanking");
   if(!box) return;
@@ -1663,7 +1787,7 @@ function renderFanRanking(ranking=[]){
     box.innerHTML=ranking.map((x,i)=>`
       <div class="fan-rank-item">
         <span class="fan-rank-no">${String(i+1).padStart(2,"0")} / TOP5</span>
-        <span class="fan-rank-title">${esc(x.song_title)}</span>
+        <span class="fan-rank-title">${esc(x.song_title)} ${rankMoveBadge(x)}</span>
         <span class="fan-rank-votes">♥ ${x.votes}票</span>
       </div>
     `).join("");
@@ -1712,6 +1836,7 @@ async function loadVotes(){
     ALL_TIME_VOTE_TOTALS=data.totals||{};
     updateVoteState(data.today);
     renderUnlock(data.unlock,false);
+    renderNearTop5(data.near_top5||null);
     renderFanRanking(data.ranking||[]);
   }catch(e){
     const status=document.getElementById("voteStatus");
@@ -1787,6 +1912,8 @@ async function castVote(title, btn){
       animateVoteCounter();
       ALL_TIME_VOTE_TOTALS=data.totals||ALL_TIME_VOTE_TOTALS;
       renderUnlock(data.unlock, !!data.unlock_incremented);
+      renderNearTop5(data.near_top5||null);
+      showVoteReward();
 
       window.setTimeout(()=>{
         if(floating && VOTES_REMAINING<=0) floating.classList.remove("show");
@@ -2053,6 +2180,7 @@ if(unlockPlayBtn && unlockAudio){
   unlockAudio.addEventListener("loadedmetadata", updateUnlockProgress);
 }
 
+setupVoteTheme();
 render();
 loadVotes();
 </script>
@@ -2060,6 +2188,12 @@ loadVotes();
 <div id="voteFloating" class="vote-floating" aria-live="polite">
   <span class="heart">♡</span>
   <span>今日はあと <strong id="voteFloatingCount">3</strong> 票</span>
+</div>
+
+
+<div id="voteReward" class="vote-reward" aria-live="polite">
+  <small>THANK YOU FOR YOUR VOTE</small>
+  <span id="voteRewardText"></span>
 </div>
 
 </body>
